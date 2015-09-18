@@ -16,5 +16,15 @@ namespace TA.GUI
         {
             InitializeComponent();
         }
+
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            var loader = new TA.Core.Loader();
+            loader.Load(@"D:\test.txt").RemoveUselessChars().ToLowerCase();
+            var w = loader.Words;
+
+            var frequency = new TA.Basic.Frequency(w);
+            frequency.Process();
+        }
     }
 }
