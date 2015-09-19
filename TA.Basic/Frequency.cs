@@ -18,6 +18,9 @@ namespace TA.Basic
         public int count;
     }
 
+    /// <summary>
+    /// Реализация статистического метода Frequency.
+    /// </summary>
     public class Frequency
     {
         private List<string> _words { set; get; }

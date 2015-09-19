@@ -40,7 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Frequency.cs" />
+    <Compile Include="LogLikelihood.cs" />
+    <Compile Include="MutualInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TfIdf.cs" />
+    <Compile Include="TScore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TA.Core\TA.Core.csproj">

@@ -40,9 +40,9 @@ namespace TA.Core
         /// <summary>
         /// Преобразует все слова к нижнему регистру.
         /// </summary>
-        public Loader ToLowerCase()
+        public Loader ToUpperCase()
         {
-            Words = Words.Select(i => i.ToLower()).ToList();
+            Words = Words.Select(i => i.ToUpper()).ToList();
             return this;
         }
     }
