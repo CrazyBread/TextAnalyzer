@@ -11,9 +11,21 @@ namespace TA.Basic
     /// </summary>
     public class TfIdf
     {
-        public TfIdf()
+        private List<string> _words { set; get; }
+
+        public TfIdf(List<string> words)
+        {
+            _words = words;
+        }
+
+        public double Calculate(string word)
         {
             throw new NotImplementedException();
+            //Frequency freq = new Frequency(_words);
+            //double f = freq.GetByOneWord(word);
+            //double TF = f / _words.Count;
+            //double IDF = 0;
+            //return TF * IDF;
         }
     }
 }
