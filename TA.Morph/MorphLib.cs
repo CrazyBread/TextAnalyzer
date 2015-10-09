@@ -13,10 +13,40 @@ namespace TA.Morph
     public class MorphLib
     {
         List<string> _words;
+        string _sourceString;
 
         public MorphLib(List<string> words)
         {
             _words = words;
+        }
+
+        public MorphLib(string sourceString)
+        {
+            _sourceString = sourceString;
+        }
+
+        private List<Word> _GetWordsInfo()
+        {
+            // null check
+            if (string.IsNullOrEmpty(_sourceString) && (_words == null || _words.Count == 0))
+                return new List<Word>();
+
+            var tempFileName = @"D:\taText.tmp"; //Path.GetTempFileName();
+            if (string.IsNullOrEmpty(_sourceString))
+            {
+                var inputString = string.Join(" ", _words);
+                File.WriteAllText(tempFileName, inputString);
+            }
+            else
+            {
+                File.WriteAllText(tempFileName, _sourceString);
+            }
+
+            var mystemWrapper = new MystemWrapper();
+            var result = mystemWrapper.GetFullInfo(tempFileName);
+
+            File.Delete(tempFileName);
+            return result;
         }
 
         /// <summary>
@@ -25,15 +55,17 @@ namespace TA.Morph
         /// <returns></returns>
         public List<string> ToMainForm()
         {
-            var inputString = string.Join(" ", _words);
-            var tempFileName = @"D:\taText.tmp"; //Path.GetTempFileName();
-            File.WriteAllText(tempFileName, inputString);
+            return _GetWordsInfo().Select(i => i.Text).ToList();
+        }
 
-            var mystemWrapper = new MystemWrapper();
-            var result = mystemWrapper.GetFullInfo(tempFileName);
-
-            File.Delete(tempFileName);
-            return result;
+        /// <summary>
+        /// Возвращает слова только определённых частей речи
+        /// </summary>
+        /// <param name="partOfSpeech">Разрешённые части речи из mystem</param>
+        /// <returns></returns>
+        public List<string> Filter(params string[] partOfSpeech)
+        {
+            return _GetWordsInfo().Where(i => partOfSpeech.Contains(i.PartOfSpeech)).Select(i => i.Text).ToList();
         }
     }
 }

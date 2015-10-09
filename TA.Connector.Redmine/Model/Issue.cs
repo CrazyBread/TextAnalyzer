@@ -14,6 +14,12 @@ namespace TA.Connector.Redmine.Model
     
     public partial class Issue
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Issue()
+        {
+            this.Words = new HashSet<Word>();
+        }
+    
         public int Id { get; set; }
         public int RedmineId { get; set; }
         public int ProjectId { get; set; }
@@ -31,5 +37,7 @@ namespace TA.Connector.Redmine.Model
         public virtual Facet Facet2 { get; set; }
         public virtual Facet Facet3 { get; set; }
         public virtual Facet Facet4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Word> Words { get; set; }
     }
 }

@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connector.cs" />
     <Compile Include="IssueLoader.cs" />
     <Compile Include="Model\DB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -81,8 +82,12 @@
     <Compile Include="Model\JIssue.cs" />
     <Compile Include="Model\JIssueResponse.cs" />
     <Compile Include="Model\JLink.cs" />
+    <Compile Include="Model\Word.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedmineConfigurator.cs" />
+    <Compile Include="WordCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

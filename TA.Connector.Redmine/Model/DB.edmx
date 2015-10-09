@@ -30,6 +30,15 @@
           <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
           <Property Name="Updated" Type="datetime2" Precision="2" />
         </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IssueId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Issue_Facet_Author">
           <End Role="Facet" Type="Self.Facet" Multiplicity="0..1" />
           <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
@@ -90,9 +99,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Word_Issue">
+          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dbModelStoreContainer">
           <EntitySet Name="Facet" EntityType="Self.Facet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Issue_Facet_Author" Association="Self.FK_Issue_Facet_Author">
             <End Role="Facet" EntitySet="Facet" />
             <End Role="Issue" EntitySet="Issue" />
@@ -112,6 +134,10 @@
           <AssociationSet Name="FK_Issue_Facet_Tracker" Association="Self.FK_Issue_Facet_Tracker">
             <End Role="Facet" EntitySet="Facet" />
             <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Issue" Association="Self.FK_Word_Issue">
+            <End Role="Issue" EntitySet="Issue" />
+            <End Role="Word" EntitySet="Word" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -140,6 +166,11 @@
           <AssociationSet Name="FK_Issue_Facet_Tracker" Association="dbModel.FK_Issue_Facet_Tracker">
             <End Role="Facet" EntitySet="Facets" />
             <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
+          <EntitySet Name="Words" EntityType="dbModel.Word" />
+          <AssociationSet Name="FK_Word_Issue" Association="dbModel.FK_Word_Issue">
+            <End Role="Issue" EntitySet="Issues" />
+            <End Role="Word" EntitySet="Words" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Facet">
@@ -176,6 +207,7 @@
           <NavigationProperty Name="Facet2" Relationship="dbModel.FK_Issue_Facet_Project" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Facet3" Relationship="dbModel.FK_Issue_Facet_Status" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Facet4" Relationship="dbModel.FK_Issue_Facet_Tracker" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Words" Relationship="dbModel.FK_Word_Issue" FromRole="Issue" ToRole="Word" />
         </EntityType>
         <Association Name="FK_Issue_Facet_Author">
           <End Type="dbModel.Facet" Role="Facet" Multiplicity="0..1" />
@@ -237,6 +269,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IssueId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Issue" Relationship="dbModel.FK_Word_Issue" FromRole="Word" ToRole="Issue" />
+        </EntityType>
+        <Association Name="FK_Word_Issue">
+          <End Type="dbModel.Issue" Role="Issue" Multiplicity="1" />
+          <End Type="dbModel.Word" Role="Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -266,6 +320,16 @@
                 <ScalarProperty Name="TrackerId" ColumnName="TrackerId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="RedmineId" ColumnName="RedmineId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Words">
+            <EntityTypeMapping TypeName="dbModel.Word">
+              <MappingFragment StoreEntitySet="Word">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -29,6 +29,7 @@ namespace TA.GUI
                 _words = loader.Words;
 
                 statisticAnalisysToolStripMenuItem.Enabled = true;
+                morphologicalAnalisysToolStripMenuItem.Enabled = true;
                 loadToolStripMenuItem.Enabled = false;
             }
         }
@@ -68,6 +69,31 @@ namespace TA.GUI
 
             textBoxBigramm.Text = resultBigramm;
             MessageBox.Show(resultCoef.ToString());
+        }
+
+        private void morphologicalAnalisysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void fillWordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var issues = TA.Connector.Redmine.Connector.GetAllIssues();
+
+            foreach (var issue in issues)
+            {
+                System.Diagnostics.Trace.WriteLine(issue.RedmineId);
+
+                var morphLib = new TA.Morph.MorphLib(issue.Description);
+                var wrds = morphLib.Filter("V", "S", "A", "ANUM", "APRO", "NUM", "SPRO", "ADV");
+                var wrdsFreq = new Basic.Frequency(wrds);
+                var wrdsFreqResult = wrdsFreq.Process();
+                foreach (var word in wrdsFreqResult)
+                {
+                    TA.Connector.Redmine.WordCollector.Collect(issue.Id, word.word, word.count);
+                }
+                TA.Connector.Redmine.WordCollector.Submit();
+            }
         }
     }
 }

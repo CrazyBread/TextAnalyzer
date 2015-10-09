@@ -16,6 +16,11 @@ namespace TA.Basic
 
         public string word;
         public int count;
+
+        public override string ToString()
+        {
+            return string.Format("w: {0}, c: {1}", word, count);
+        }
     }
 
     /// <summary>

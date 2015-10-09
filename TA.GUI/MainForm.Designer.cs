@@ -36,6 +36,9 @@
             this.labelBigramm = new System.Windows.Forms.Label();
             this.textBoxBigramm = new System.Windows.Forms.TextBox();
             this.buttonBigrammFind = new System.Windows.Forms.Button();
+            this.morphologicalAnalisysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redmineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fillWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,10 +46,12 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
-            this.statisticAnalisysToolStripMenuItem});
+            this.statisticAnalisysToolStripMenuItem,
+            this.morphologicalAnalisysToolStripMenuItem,
+            this.redmineToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(599, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -96,7 +101,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBigramm.Location = new System.Drawing.Point(77, 38);
             this.textBoxBigramm.Name = "textBoxBigramm";
-            this.textBoxBigramm.Size = new System.Drawing.Size(195, 20);
+            this.textBoxBigramm.Size = new System.Drawing.Size(510, 20);
             this.textBoxBigramm.TabIndex = 3;
             // 
             // buttonBigrammFind
@@ -105,17 +110,40 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonBigrammFind.Location = new System.Drawing.Point(15, 67);
             this.buttonBigrammFind.Name = "buttonBigrammFind";
-            this.buttonBigrammFind.Size = new System.Drawing.Size(256, 27);
+            this.buttonBigrammFind.Size = new System.Drawing.Size(571, 27);
             this.buttonBigrammFind.TabIndex = 4;
             this.buttonBigrammFind.Text = "Поиск биграммы";
             this.buttonBigrammFind.UseVisualStyleBackColor = true;
             this.buttonBigrammFind.Click += new System.EventHandler(this.buttonBigrammFind_Click);
             // 
+            // morphologicalAnalisysToolStripMenuItem
+            // 
+            this.morphologicalAnalisysToolStripMenuItem.Enabled = false;
+            this.morphologicalAnalisysToolStripMenuItem.Name = "morphologicalAnalisysToolStripMenuItem";
+            this.morphologicalAnalisysToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
+            this.morphologicalAnalisysToolStripMenuItem.Text = "Morphological analisys";
+            this.morphologicalAnalisysToolStripMenuItem.Click += new System.EventHandler(this.morphologicalAnalisysToolStripMenuItem_Click);
+            // 
+            // redmineToolStripMenuItem
+            // 
+            this.redmineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fillWordsToolStripMenuItem});
+            this.redmineToolStripMenuItem.Name = "redmineToolStripMenuItem";
+            this.redmineToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.redmineToolStripMenuItem.Text = "Redmine";
+            // 
+            // fillWordsToolStripMenuItem
+            // 
+            this.fillWordsToolStripMenuItem.Name = "fillWordsToolStripMenuItem";
+            this.fillWordsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fillWordsToolStripMenuItem.Text = "Fill words";
+            this.fillWordsToolStripMenuItem.Click += new System.EventHandler(this.fillWordsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(599, 261);
             this.Controls.Add(this.buttonBigrammFind);
             this.Controls.Add(this.textBoxBigramm);
             this.Controls.Add(this.labelBigramm);
@@ -140,6 +168,9 @@
         private System.Windows.Forms.Label labelBigramm;
         private System.Windows.Forms.TextBox textBoxBigramm;
         private System.Windows.Forms.Button buttonBigrammFind;
+        private System.Windows.Forms.ToolStripMenuItem morphologicalAnalisysToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redmineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fillWordsToolStripMenuItem;
     }
 }
 

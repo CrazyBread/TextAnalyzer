@@ -117,10 +117,6 @@
       <Project>{6cee35b7-13b3-4ab2-9cab-ce832c77e59a}</Project>
       <Name>TA.Morph</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TA.Ontology\TA.Ontology.csproj">
-      <Project>{d7decce3-0334-4590-8f88-a11a945fd929}</Project>
-      <Name>TA.Ontology</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="source.txt">

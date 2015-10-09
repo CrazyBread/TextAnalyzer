@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bd7b820f886345e8b3d002f2177df75b" Name="Diagram1" ZoomLevel="114">
+      <Diagram DiagramId="bd7b820f886345e8b3d002f2177df75b" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="dbModel.Facet" Width="1.5" PointX="0.75" PointY="1.75" />
         <EntityTypeShape EntityType="dbModel.Issue" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Author" />
@@ -12,6 +12,8 @@
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Project" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Status" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Tracker" />
+        <EntityTypeShape EntityType="dbModel.Word" Width="1.5" PointX="5.25" PointY="2.125" />
+        <AssociationConnector Association="dbModel.FK_Word_Issue" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
