@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TA.Ontology")]
+[assembly: AssemblyTitle("TA.Connector.Redmine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TA.Ontology")]
+[assembly: AssemblyProduct("TA.Connector.Redmine")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("256deac3-bf56-45a4-b744-97de266b98f6")]
+[assembly: Guid("34bc3895-64ad-4491-87a0-435308d29a5a")]
 
 // Version information for an assembly consists of the following four values:
 //

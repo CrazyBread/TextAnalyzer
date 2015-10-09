@@ -24,7 +24,7 @@ namespace TA.GUI
             var dialog = new OpenFileDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var loader = new TA.Core.Loader();
+                var loader = new TA.Connector.File.FileLoader();
                 loader.Load(dialog.FileName).RemoveUselessChars().ToUpperCase();
                 _words = loader.Words;
 

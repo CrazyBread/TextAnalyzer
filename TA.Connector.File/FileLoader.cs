@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TA.Core
+namespace TA.Connector.File
 {
     /// <summary>
     /// Позполяет получить текст из файла.
     /// </summary>
-    public class Loader
+    public class FileLoader
     {
         public List<string> Words { set; get; }
 
@@ -18,7 +18,7 @@ namespace TA.Core
         /// Загружает список слов из файла.
         /// </summary>
         /// <param name="path">Путь до файла.</param>
-        public Loader Load(string path)
+        public FileLoader Load(string path)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentException("Путь до файла должен быть заполнен.");
@@ -31,7 +31,7 @@ namespace TA.Core
         /// <summary>
         /// Удаляет ненужные символы (знаки препинания и другие ненужные символы).
         /// </summary>
-        public Loader RemoveUselessChars()
+        public FileLoader RemoveUselessChars()
         {
             Words = Words.Select(i => Regex.Replace(i, "[^A-Za-zА-Яа-я]", string.Empty)).Where(i => i.Length > 0).ToList();
             return this;
@@ -40,7 +40,7 @@ namespace TA.Core
         /// <summary>
         /// Преобразует все слова к нижнему регистру.
         /// </summary>
-        public Loader ToUpperCase()
+        public FileLoader ToUpperCase()
         {
             Words = Words.Select(i => i.ToUpper()).ToList();
             return this;
