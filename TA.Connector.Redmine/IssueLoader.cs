@@ -74,7 +74,7 @@ namespace TA.Connector.Redmine
             IList<Model.Facet> facetsCache = db.Facets.ToList();
             IList<Model.JournalFacet> journalFacetsCache = db.JournalFacets.ToList();
 
-            foreach (var issue in needSynchronized)
+            foreach (var issue in needSynchronized.OrderByDescending(i => i.RedmineId))
             {
                 try
                 {
@@ -87,7 +87,7 @@ namespace TA.Connector.Redmine
 
                     foreach (var journal in jResult.issue.journals)
                     {
-                        var journalItem = new Model.Journal() { IssueId = issue.Id, RedmineId = journal.id };
+                        var journalItem = new Model.Journal() { IssueId = issue.Id, RedmineId = journal.id, Date = journal.created_on, Created = DateTime.Now };
                         if (journal.user != null)
                             journalItem.AuthorId = GetFacetId("user", journal.user, facetsCache);
                         db.Journals.Add(journalItem);

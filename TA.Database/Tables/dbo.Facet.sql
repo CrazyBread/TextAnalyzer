@@ -6,5 +6,8 @@ CREATE TABLE [dbo].[Facet]
 [Name] [nvarchar] (200) COLLATE Cyrillic_General_CI_AS NOT NULL
 )
 GO
+ALTER TABLE [dbo].[Facet] ADD CONSTRAINT [UQ_IX_Facet] UNIQUE NONCLUSTERED  ([Group], [RedmineId])
+
+GO
 ALTER TABLE [dbo].[Facet] ADD CONSTRAINT [PK_Facet] PRIMARY KEY CLUSTERED  ([Id])
 GO
