@@ -28,5 +28,8 @@ namespace TA.Connector.Redmine.Model
         public virtual DbSet<Facet> Facets { get; set; }
         public virtual DbSet<Issue> Issues { get; set; }
         public virtual DbSet<Word> Words { get; set; }
+        public virtual DbSet<Journal> Journals { get; set; }
+        public virtual DbSet<JournalDetail> JournalDetails { get; set; }
+        public virtual DbSet<JournalFacet> JournalFacets { get; set; }
     }
 }

@@ -12,11 +12,11 @@ namespace TA.Connector.Redmine.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Facet
+    public partial class JournalFacet
     {
         public int Id { get; set; }
-        public string Group { get; set; }
-        public int RedmineId { get; set; }
+        public string Property { get; set; }
         public string Name { get; set; }
+        public System.DateTime Created { get; set; }
     }
 }

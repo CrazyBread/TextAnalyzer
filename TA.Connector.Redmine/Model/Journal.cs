@@ -12,35 +12,24 @@ namespace TA.Connector.Redmine.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Issue
+    public partial class Journal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Issue()
+        public Journal()
         {
-            this.Words = new HashSet<Word>();
-            this.Journals = new HashSet<Journal>();
+            this.JournalDetails = new HashSet<JournalDetail>();
         }
     
         public int Id { get; set; }
+        public int IssueId { get; set; }
         public int RedmineId { get; set; }
-        public int ProjectId { get; set; }
-        public int TrackerId { get; set; }
-        public int StatusId { get; set; }
-        public int PriorityId { get; set; }
         public Nullable<int> AuthorId { get; set; }
-        public string Subject { get; set; }
-        public string Description { get; set; }
+        public System.DateTime Date { get; set; }
         public System.DateTime Created { get; set; }
-        public Nullable<System.DateTime> Updated { get; set; }
     
         public virtual Facet Author { get; set; }
-        public virtual Facet Priority { get; set; }
-        public virtual Facet Project { get; set; }
-        public virtual Facet Status { get; set; }
-        public virtual Facet Tracker { get; set; }
+        public virtual Issue Issue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Word> Words { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journal> Journals { get; set; }
+        public virtual ICollection<JournalDetail> JournalDetails { get; set; }
     }
 }

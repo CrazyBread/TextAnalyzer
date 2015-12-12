@@ -82,6 +82,15 @@
     <Compile Include="Model\JIssue.cs" />
     <Compile Include="Model\JIssueResponse.cs" />
     <Compile Include="Model\JLink.cs" />
+    <Compile Include="Model\Journal.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\JournalDetail.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\JournalFacet.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Word.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

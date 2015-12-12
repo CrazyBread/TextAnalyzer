@@ -94,9 +94,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TA.Basic\TA.Basic.csproj">
       <Project>{60d374ba-eb1b-429a-a863-35d438f1ad80}</Project>
       <Name>TA.Basic</Name>

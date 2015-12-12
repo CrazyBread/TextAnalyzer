@@ -40,6 +40,9 @@
             this.textBoxBigramm = new System.Windows.Forms.TextBox();
             this.buttonBigrammFind = new System.Windows.Forms.Button();
             this.buttonClasterize = new System.Windows.Forms.Button();
+            this.issuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadStatusesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +101,8 @@
             // redmineToolStripMenuItem
             // 
             this.redmineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fillWordsToolStripMenuItem});
+            this.fillWordsToolStripMenuItem,
+            this.issuesToolStripMenuItem});
             this.redmineToolStripMenuItem.Name = "redmineToolStripMenuItem";
             this.redmineToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.redmineToolStripMenuItem.Text = "Redmine";
@@ -106,7 +110,7 @@
             // fillWordsToolStripMenuItem
             // 
             this.fillWordsToolStripMenuItem.Name = "fillWordsToolStripMenuItem";
-            this.fillWordsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.fillWordsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.fillWordsToolStripMenuItem.Text = "Fill words";
             this.fillWordsToolStripMenuItem.Click += new System.EventHandler(this.fillWordsToolStripMenuItem_Click);
             // 
@@ -152,6 +156,28 @@
             this.buttonClasterize.UseVisualStyleBackColor = true;
             this.buttonClasterize.Click += new System.EventHandler(this.buttonClasterize_Click);
             // 
+            // issuesToolStripMenuItem
+            // 
+            this.issuesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem1,
+            this.loadStatusesToolStripMenuItem});
+            this.issuesToolStripMenuItem.Name = "issuesToolStripMenuItem";
+            this.issuesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.issuesToolStripMenuItem.Text = "Issues";
+            // 
+            // loadToolStripMenuItem1
+            // 
+            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem1.Text = "Load";
+            this.loadToolStripMenuItem1.Click += new System.EventHandler(this.loadToolStripMenuItem1_Click);
+            // 
+            // loadStatusesToolStripMenuItem
+            // 
+            this.loadStatusesToolStripMenuItem.Name = "loadStatusesToolStripMenuItem";
+            this.loadStatusesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadStatusesToolStripMenuItem.Text = "Load statuses";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,6 +212,9 @@
         private System.Windows.Forms.ToolStripMenuItem redmineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fillWordsToolStripMenuItem;
         private System.Windows.Forms.Button buttonClasterize;
+        private System.Windows.Forms.ToolStripMenuItem issuesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem loadStatusesToolStripMenuItem;
     }
 }
 

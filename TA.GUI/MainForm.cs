@@ -113,7 +113,7 @@ namespace TA.GUI
                 var clasterItems = new List<Core.ClasterItem>();
                 for (int i = 0; i < firstFormWords.Count - 1; i++)
                 {
-                    var clasterItemText = firstFormWords[i] + " " + firstFormWords[i+1];
+                    var clasterItemText = firstFormWords[i] + " " + firstFormWords[i + 1];
                     if (clasterItems.Any(j => j.Item.ToString() == clasterItemText))
                         continue;
                     var m1 = method1.Calculate(clasterItemText);
@@ -130,6 +130,16 @@ namespace TA.GUI
                 clasterizeBigrams.Run();
                 clasterizeBigrams.PrintResult(@"d:\result.txt");
             }
+        }
+
+        private void loadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Connector.Redmine.IssueLoader ir = new Connector.Redmine.IssueLoader(new Connector.Redmine.RedmineConfigurator()
+            {
+                Link = "http://redmine.aisgorod.ru",
+                Key = "3a2901bd622185835374cb45e9c98a58644df40f"
+            });
+            ir.Run();
         }
     }
 }

@@ -30,6 +30,37 @@
           <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
           <Property Name="Updated" Type="datetime2" Precision="2" />
         </EntityType>
+        <EntityType Name="Journal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IssueId" Type="int" Nullable="false" />
+          <Property Name="RedmineId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="2" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JournalDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JournalId" Type="int" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="OldValue" Type="nvarchar(max)" />
+          <Property Name="NewValue" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JournalFacet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Property" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="Word">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,6 +130,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Journal_Facet_Author">
+          <End Role="Facet" Type="Self.Facet" Multiplicity="0..1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journal_Issue">
+          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JournalDetails_Journal">
+          <End Role="Journal" Type="Self.Journal" Multiplicity="1" />
+          <End Role="JournalDetails" Type="Self.JournalDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JournalDetails">
+              <PropertyRef Name="JournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JournalDetails_JournalFacet_Property">
+          <End Role="JournalFacet" Type="Self.JournalFacet" Multiplicity="1" />
+          <End Role="JournalDetails" Type="Self.JournalDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JournalFacet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JournalDetails">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Word_Issue">
           <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
           <End Role="Word" Type="Self.Word" Multiplicity="*" />
@@ -114,6 +193,9 @@
         <EntityContainer Name="dbModelStoreContainer">
           <EntitySet Name="Facet" EntityType="Self.Facet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JournalDetails" EntityType="Self.JournalDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JournalFacet" EntityType="Self.JournalFacet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Issue_Facet_Author" Association="Self.FK_Issue_Facet_Author">
             <End Role="Facet" EntitySet="Facet" />
@@ -134,6 +216,22 @@
           <AssociationSet Name="FK_Issue_Facet_Tracker" Association="Self.FK_Issue_Facet_Tracker">
             <End Role="Facet" EntitySet="Facet" />
             <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Facet_Author" Association="Self.FK_Journal_Facet_Author">
+            <End Role="Facet" EntitySet="Facet" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Issue" Association="Self.FK_Journal_Issue">
+            <End Role="Issue" EntitySet="Issue" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalDetails_Journal" Association="Self.FK_JournalDetails_Journal">
+            <End Role="Journal" EntitySet="Journal" />
+            <End Role="JournalDetails" EntitySet="JournalDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalDetails_JournalFacet_Property" Association="Self.FK_JournalDetails_JournalFacet_Property">
+            <End Role="JournalFacet" EntitySet="JournalFacet" />
+            <End Role="JournalDetails" EntitySet="JournalDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Word_Issue" Association="Self.FK_Word_Issue">
             <End Role="Issue" EntitySet="Issue" />
@@ -172,6 +270,25 @@
             <End Role="Issue" EntitySet="Issues" />
             <End Role="Word" EntitySet="Words" />
           </AssociationSet>
+          <EntitySet Name="Journals" EntityType="dbModel.Journal" />
+          <EntitySet Name="JournalDetails" EntityType="dbModel.JournalDetail" />
+          <EntitySet Name="JournalFacets" EntityType="dbModel.JournalFacet" />
+          <AssociationSet Name="FK_Journal_Facet_Author" Association="dbModel.FK_Journal_Facet_Author">
+            <End Role="Facet" EntitySet="Facets" />
+            <End Role="Journal" EntitySet="Journals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Issue" Association="dbModel.FK_Journal_Issue">
+            <End Role="Issue" EntitySet="Issues" />
+            <End Role="Journal" EntitySet="Journals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalDetails_Journal" Association="dbModel.FK_JournalDetails_Journal">
+            <End Role="Journal" EntitySet="Journals" />
+            <End Role="JournalDetail" EntitySet="JournalDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalDetails_JournalFacet_Property" Association="dbModel.FK_JournalDetails_JournalFacet_Property">
+            <End Role="JournalFacet" EntitySet="JournalFacets" />
+            <End Role="JournalDetail" EntitySet="JournalDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Facet">
           <Key>
@@ -181,11 +298,6 @@
           <Property Name="Group" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="RedmineId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Issues" Relationship="dbModel.FK_Issue_Facet_Author" FromRole="Facet" ToRole="Issue" />
-          <NavigationProperty Name="Issues1" Relationship="dbModel.FK_Issue_Facet_Priority" FromRole="Facet" ToRole="Issue" />
-          <NavigationProperty Name="Issues2" Relationship="dbModel.FK_Issue_Facet_Project" FromRole="Facet" ToRole="Issue" />
-          <NavigationProperty Name="Issues3" Relationship="dbModel.FK_Issue_Facet_Status" FromRole="Facet" ToRole="Issue" />
-          <NavigationProperty Name="Issues4" Relationship="dbModel.FK_Issue_Facet_Tracker" FromRole="Facet" ToRole="Issue" />
         </EntityType>
         <EntityType Name="Issue">
           <Key>
@@ -202,12 +314,13 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
           <Property Name="Updated" Type="DateTime" Precision="2" />
-          <NavigationProperty Name="Facet" Relationship="dbModel.FK_Issue_Facet_Author" FromRole="Issue" ToRole="Facet" />
-          <NavigationProperty Name="Facet1" Relationship="dbModel.FK_Issue_Facet_Priority" FromRole="Issue" ToRole="Facet" />
-          <NavigationProperty Name="Facet2" Relationship="dbModel.FK_Issue_Facet_Project" FromRole="Issue" ToRole="Facet" />
-          <NavigationProperty Name="Facet3" Relationship="dbModel.FK_Issue_Facet_Status" FromRole="Issue" ToRole="Facet" />
-          <NavigationProperty Name="Facet4" Relationship="dbModel.FK_Issue_Facet_Tracker" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Author" Relationship="dbModel.FK_Issue_Facet_Author" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Priority" Relationship="dbModel.FK_Issue_Facet_Priority" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Project" Relationship="dbModel.FK_Issue_Facet_Project" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Status" Relationship="dbModel.FK_Issue_Facet_Status" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Tracker" Relationship="dbModel.FK_Issue_Facet_Tracker" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Words" Relationship="dbModel.FK_Word_Issue" FromRole="Issue" ToRole="Word" />
+          <NavigationProperty Name="Journals" Relationship="dbModel.FK_Journal_Issue" FromRole="Issue" ToRole="Journal" />
         </EntityType>
         <Association Name="FK_Issue_Facet_Author">
           <End Type="dbModel.Facet" Role="Facet" Multiplicity="0..1" />
@@ -291,6 +404,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Journal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IssueId" Type="Int32" Nullable="false" />
+          <Property Name="RedmineId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="2" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
+          <NavigationProperty Name="Author" Relationship="dbModel.FK_Journal_Facet_Author" FromRole="Journal" ToRole="Facet" />
+          <NavigationProperty Name="Issue" Relationship="dbModel.FK_Journal_Issue" FromRole="Journal" ToRole="Issue" />
+          <NavigationProperty Name="JournalDetails" Relationship="dbModel.FK_JournalDetails_Journal" FromRole="Journal" ToRole="JournalDetail" />
+        </EntityType>
+        <EntityType Name="JournalDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JournalId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
+          <NavigationProperty Name="Journal" Relationship="dbModel.FK_JournalDetails_Journal" FromRole="JournalDetail" ToRole="Journal" />
+          <NavigationProperty Name="Property" Relationship="dbModel.FK_JournalDetails_JournalFacet_Property" FromRole="JournalDetail" ToRole="JournalFacet" />
+        </EntityType>
+        <EntityType Name="JournalFacet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Property" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
+        </EntityType>
+        <Association Name="FK_Journal_Facet_Author">
+          <End Type="dbModel.Facet" Role="Facet" Multiplicity="0..1" />
+          <End Type="dbModel.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journal_Issue">
+          <End Type="dbModel.Issue" Role="Issue" Multiplicity="1" />
+          <End Type="dbModel.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JournalDetails_Journal">
+          <End Type="dbModel.Journal" Role="Journal" Multiplicity="1" />
+          <End Type="dbModel.JournalDetail" Role="JournalDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JournalDetail">
+              <PropertyRef Name="JournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JournalDetails_JournalFacet_Property">
+          <End Type="dbModel.JournalFacet" Role="JournalFacet" Multiplicity="1" />
+          <End Type="dbModel.JournalDetail" Role="JournalDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JournalFacet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JournalDetail">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -330,6 +527,40 @@
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Journals">
+            <EntityTypeMapping TypeName="dbModel.Journal">
+              <MappingFragment StoreEntitySet="Journal">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="RedmineId" ColumnName="RedmineId" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JournalDetails">
+            <EntityTypeMapping TypeName="dbModel.JournalDetail">
+              <MappingFragment StoreEntitySet="JournalDetails">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="JournalId" ColumnName="JournalId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JournalFacets">
+            <EntityTypeMapping TypeName="dbModel.JournalFacet">
+              <MappingFragment StoreEntitySet="JournalFacet">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Property" ColumnName="Property" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
