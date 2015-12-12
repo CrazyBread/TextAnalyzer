@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TA.Connector.Redmine.Model
 {
-    public class JIssueResponse
+    public class JIssueMultiply
     {
         public int total_count { set; get; }
         public ICollection<JIssue> issues { set; get; }

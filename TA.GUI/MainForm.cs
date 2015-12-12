@@ -141,5 +141,15 @@ namespace TA.GUI
             });
             ir.Run();
         }
+
+        private void loadStatusesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Connector.Redmine.IssueLoader ir = new Connector.Redmine.IssueLoader(new Connector.Redmine.RedmineConfigurator()
+            {
+                Link = "http://redmine.aisgorod.ru",
+                Key = "3a2901bd622185835374cb45e9c98a58644df40f"
+            });
+            ir.RunJournals();
+        }
     }
 }

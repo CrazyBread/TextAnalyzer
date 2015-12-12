@@ -177,6 +177,7 @@
             this.loadStatusesToolStripMenuItem.Name = "loadStatusesToolStripMenuItem";
             this.loadStatusesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadStatusesToolStripMenuItem.Text = "Load statuses";
+            this.loadStatusesToolStripMenuItem.Click += new System.EventHandler(this.loadStatusesToolStripMenuItem_Click);
             // 
             // MainForm
             // 

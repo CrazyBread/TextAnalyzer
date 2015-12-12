@@ -17,5 +17,6 @@ namespace TA.Connector.Redmine.Model
         public string subject { set; get; }
         public string description { set; get; }
         public DateTime created_on { set; get; }
+        public ICollection<JJournal> journals { set; get; }
     }
 }

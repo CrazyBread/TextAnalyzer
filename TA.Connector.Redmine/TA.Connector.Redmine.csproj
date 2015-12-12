@@ -80,7 +80,10 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\JIssue.cs" />
-    <Compile Include="Model\JIssueResponse.cs" />
+    <Compile Include="Model\JIssueSingle.cs" />
+    <Compile Include="Model\JIssueMultiply.cs" />
+    <Compile Include="Model\JJournal.cs" />
+    <Compile Include="Model\JJournalDetail.cs" />
     <Compile Include="Model\JLink.cs" />
     <Compile Include="Model\Journal.cs">
       <DependentUpon>DB.tt</DependentUpon>
