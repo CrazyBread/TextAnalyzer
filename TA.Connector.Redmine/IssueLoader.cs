@@ -20,14 +20,15 @@ namespace TA.Connector.Redmine
         public void Run()
         {
             var db = new Model.dbEntities();
-            IDictionary<int, bool> issuesCache = db.Issues.ToDictionary(i => i.RedmineId, j => true);
+
+            IDictionary<int, DateTime?> issuesCache = db.Issues.ToDictionary(i => i.RedmineId, j => j.Updated);
             IList<Model.Facet> facetsCache = db.Facets.ToList();
 
             int totalCount = 1;
             int limit = 100;
             for (int i = 0; i < totalCount; i += 100)
             {
-                var url = string.Format("{0}/issues.json?key={1}&limit={2}&offset={3}&status_id=closed", _configurator.Link, _configurator.Key, limit, i);
+                var url = string.Format("{0}/issues.json?key={1}&limit={2}&offset={3}&status_id=*", _configurator.Link, _configurator.Key, limit, i);
                 var json = GetStringFromUrl(url);
                 var jResult = JsonConvert.DeserializeObject<Model.JIssueMultiply>(json);
                 totalCount = jResult.total_count;
@@ -35,11 +36,13 @@ namespace TA.Connector.Redmine
 
                 foreach (var item in jResult.issues)
                 {
-                    if (issuesCache.ContainsKey(item.id))
+                    if (issuesCache.ContainsKey(item.id) && issuesCache[item.id].HasValue && issuesCache[item.id].Value >= item.updated_on)
                         continue;
 
-                    var issueItem = new Model.Issue() { RedmineId = item.id, Created = item.created_on, Subject = item.subject, Description = item.description };
-
+                    var issueItem = (issuesCache.ContainsKey(item.id)) ? db.Issues.First(j => j.RedmineId == item.id) : new Model.Issue() { RedmineId = item.id, Created = item.created_on };
+                    issueItem.Updated = item.updated_on;
+                    issueItem.Subject = item.subject;
+                    issueItem.Description = item.description;
                     issueItem.StatusId = GetFacetId("status", item.status, facetsCache);
                     issueItem.TrackerId = GetFacetId("tracker", item.tracker, facetsCache);
                     issueItem.PriorityId = GetFacetId("priority", item.priority, facetsCache);
@@ -47,8 +50,10 @@ namespace TA.Connector.Redmine
                     if (item.assigned_to != null)
                         issueItem.AssigneeId = GetFacetId("user", item.assigned_to, facetsCache);
 
-                    db.Issues.Add(issueItem);
-                    issuesCache.Add(item.id, true);
+                    if (db.Entry(issueItem).State == System.Data.Entity.EntityState.Detached)
+                        db.Issues.Add(issueItem);
+                    if (!issuesCache.ContainsKey(item.id))
+                        issuesCache.Add(item.id, item.updated_on);
 
                     Console.WriteLine("Issue #{0} added!", item.id);
                 }
@@ -67,10 +72,14 @@ namespace TA.Connector.Redmine
 
         public void RunJournals()
         {
+            var closedTasks = new string[] { "Сделана", "Отклонена" };
             var db = new Model.dbEntities();
-            var issues = db.Issues.Select(i => new { i.Id, i.RedmineId }).ToList();
+
+            var closedIssues = db.Issues.Include("Status").Where(i => closedTasks.Contains(i.Status.Name)).Select(i => new { i.Id, i.RedmineId }).ToList();
             var alreadySynchronized = db.Journals.GroupBy(i => i.IssueId, (i, j) => i).ToList();
-            var needSynchronized = issues.Except(issues.Where(i => alreadySynchronized.Contains(i.Id)));
+            var openedIssues = db.Issues.Include("Status").Where(i => !closedTasks.Contains(i.Status.Name)).Select(i => new { i.Id, i.RedmineId }).ToList();
+            var needSynchronized = closedIssues.Except(closedIssues.Where(i => alreadySynchronized.Contains(i.Id))).Union(openedIssues);
+
             IList<Model.Facet> facetsCache = db.Facets.ToList();
             IList<Model.JournalFacet> journalFacetsCache = db.JournalFacets.ToList();
 
@@ -78,6 +87,7 @@ namespace TA.Connector.Redmine
             {
                 try
                 {
+                    var loadedJournals = db.Journals.Where(i => i.IssueId == issue.Id).Select(i => i.RedmineId).ToList();
                     var url = string.Format("{0}/issues/{1}.json?key={2}&include=journals", _configurator.Link, issue.RedmineId, _configurator.Key);
                     var json = GetStringFromUrl(url);
                     var jResult = JsonConvert.DeserializeObject<Model.JIssueSingle>(json);
@@ -87,6 +97,9 @@ namespace TA.Connector.Redmine
 
                     foreach (var journal in jResult.issue.journals)
                     {
+                        if (loadedJournals.Contains(journal.id))
+                            continue;
+
                         var journalItem = new Model.Journal() { IssueId = issue.Id, RedmineId = journal.id, Date = journal.created_on, Created = DateTime.Now };
                         if (journal.user != null)
                             journalItem.AuthorId = GetFacetId("user", journal.user, facetsCache);
@@ -101,6 +114,8 @@ namespace TA.Connector.Redmine
                     }
 
                     db.SaveChanges();
+                    db.Dispose();
+                    db = new Model.dbEntities();
                     Console.WriteLine("Journal for issue #{0} synchronized", issue.RedmineId);
                 }
                 catch (Exception ex)
