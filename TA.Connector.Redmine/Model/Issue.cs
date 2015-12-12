@@ -27,13 +27,13 @@ namespace TA.Connector.Redmine.Model
         public int TrackerId { get; set; }
         public int StatusId { get; set; }
         public int PriorityId { get; set; }
-        public Nullable<int> AuthorId { get; set; }
+        public Nullable<int> AssigneeId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
     
-        public virtual Facet Author { get; set; }
+        public virtual Facet Assignee { get; set; }
         public virtual Facet Priority { get; set; }
         public virtual Facet Project { get; set; }
         public virtual Facet Status { get; set; }

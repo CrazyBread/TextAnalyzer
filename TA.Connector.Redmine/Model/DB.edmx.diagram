@@ -7,7 +7,6 @@
       <Diagram DiagramId="bd7b820f886345e8b3d002f2177df75b" Name="Main" ZoomLevel="74">
         <EntityTypeShape EntityType="dbModel.Facet" Width="1.5" PointX="0.75" PointY="3" />
         <EntityTypeShape EntityType="dbModel.Issue" Width="1.5" PointX="3" PointY="1.625" />
-        <AssociationConnector Association="dbModel.FK_Issue_Facet_Author" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Priority" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Project" />
         <AssociationConnector Association="dbModel.FK_Issue_Facet_Status" />
@@ -21,6 +20,7 @@
         <AssociationConnector Association="dbModel.FK_Journal_Issue" />
         <AssociationConnector Association="dbModel.FK_JournalDetails_Journal" />
         <AssociationConnector Association="dbModel.FK_JournalDetails_JournalFacet_Property" />
+        <AssociationConnector Association="dbModel.FK_Issue_Facet_Assignee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

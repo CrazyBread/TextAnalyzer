@@ -24,7 +24,7 @@
           <Property Name="TrackerId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="PriorityId" Type="int" Nullable="false" />
-          <Property Name="AuthorId" Type="int" />
+          <Property Name="AssigneeId" Type="int" />
           <Property Name="Subject" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
@@ -70,7 +70,7 @@
           <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Issue_Facet_Author">
+        <Association Name="FK_Issue_Facet_Assignee">
           <End Role="Facet" Type="Self.Facet" Multiplicity="0..1" />
           <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,7 +78,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Issue">
-              <PropertyRef Name="AuthorId" />
+              <PropertyRef Name="AssigneeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -197,7 +197,7 @@
           <EntitySet Name="JournalDetails" EntityType="Self.JournalDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JournalFacet" EntityType="Self.JournalFacet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Issue_Facet_Author" Association="Self.FK_Issue_Facet_Author">
+          <AssociationSet Name="FK_Issue_Facet_Assignee" Association="Self.FK_Issue_Facet_Assignee">
             <End Role="Facet" EntitySet="Facet" />
             <End Role="Issue" EntitySet="Issue" />
           </AssociationSet>
@@ -245,10 +245,6 @@
         <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Facets" EntityType="dbModel.Facet" />
           <EntitySet Name="Issues" EntityType="dbModel.Issue" />
-          <AssociationSet Name="FK_Issue_Facet_Author" Association="dbModel.FK_Issue_Facet_Author">
-            <End Role="Facet" EntitySet="Facets" />
-            <End Role="Issue" EntitySet="Issues" />
-          </AssociationSet>
           <AssociationSet Name="FK_Issue_Facet_Priority" Association="dbModel.FK_Issue_Facet_Priority">
             <End Role="Facet" EntitySet="Facets" />
             <End Role="Issue" EntitySet="Issues" />
@@ -289,6 +285,10 @@
             <End Role="JournalFacet" EntitySet="JournalFacets" />
             <End Role="JournalDetail" EntitySet="JournalDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_Issue_Facet_Assignee" Association="dbModel.FK_Issue_Facet_Assignee">
+            <End Role="Facet" EntitySet="Facets" />
+            <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Facet">
           <Key>
@@ -309,12 +309,12 @@
           <Property Name="TrackerId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="PriorityId" Type="Int32" Nullable="false" />
-          <Property Name="AuthorId" Type="Int32" />
+          <Property Name="AssigneeId" Type="Int32" />
           <Property Name="Subject" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
           <Property Name="Updated" Type="DateTime" Precision="2" />
-          <NavigationProperty Name="Author" Relationship="dbModel.FK_Issue_Facet_Author" FromRole="Issue" ToRole="Facet" />
+          <NavigationProperty Name="Assignee" Relationship="dbModel.FK_Issue_Facet_Assignee" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Priority" Relationship="dbModel.FK_Issue_Facet_Priority" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Project" Relationship="dbModel.FK_Issue_Facet_Project" FromRole="Issue" ToRole="Facet" />
           <NavigationProperty Name="Status" Relationship="dbModel.FK_Issue_Facet_Status" FromRole="Issue" ToRole="Facet" />
@@ -322,18 +322,6 @@
           <NavigationProperty Name="Words" Relationship="dbModel.FK_Word_Issue" FromRole="Issue" ToRole="Word" />
           <NavigationProperty Name="Journals" Relationship="dbModel.FK_Journal_Issue" FromRole="Issue" ToRole="Journal" />
         </EntityType>
-        <Association Name="FK_Issue_Facet_Author">
-          <End Type="dbModel.Facet" Role="Facet" Multiplicity="0..1" />
-          <End Type="dbModel.Issue" Role="Issue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Facet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="AuthorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Issue_Facet_Priority">
           <End Type="dbModel.Facet" Role="Facet" Multiplicity="1" />
           <End Type="dbModel.Issue" Role="Issue" Multiplicity="*" />
@@ -488,6 +476,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Issue_Facet_Assignee">
+          <End Type="dbModel.Facet" Role="Facet" Multiplicity="0..1" />
+          <End Type="dbModel.Issue" Role="Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="AssigneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -507,11 +507,11 @@
           <EntitySetMapping Name="Issues">
             <EntityTypeMapping TypeName="dbModel.Issue">
               <MappingFragment StoreEntitySet="Issue">
+                <ScalarProperty Name="AssigneeId" ColumnName="AssigneeId" />
                 <ScalarProperty Name="Updated" ColumnName="Updated" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
                 <ScalarProperty Name="PriorityId" ColumnName="PriorityId" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="TrackerId" ColumnName="TrackerId" />

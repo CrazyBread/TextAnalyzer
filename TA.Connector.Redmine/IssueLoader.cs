@@ -45,7 +45,7 @@ namespace TA.Connector.Redmine
                     issueItem.PriorityId = GetFacetId("priority", item.priority, facetsCache);
                     issueItem.ProjectId = GetFacetId("project", item.project, facetsCache);
                     if (item.assigned_to != null)
-                        issueItem.AuthorId = GetFacetId("assigned_to", item.assigned_to, facetsCache);
+                        issueItem.AssigneeId = GetFacetId("user", item.assigned_to, facetsCache);
 
                     db.Issues.Add(issueItem);
                     issuesCache.Add(item.id, true);
@@ -89,7 +89,7 @@ namespace TA.Connector.Redmine
                     {
                         var journalItem = new Model.Journal() { IssueId = issue.Id, RedmineId = journal.id };
                         if (journal.user != null)
-                            journalItem.AuthorId = GetFacetId("assigned_to", journal.user, facetsCache);
+                            journalItem.AuthorId = GetFacetId("user", journal.user, facetsCache);
                         db.Journals.Add(journalItem);
 
                         foreach (var jDetails in journal.details)
