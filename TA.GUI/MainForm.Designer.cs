@@ -33,12 +33,13 @@
             this.statisticAnalisysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mutualInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelBigramm = new System.Windows.Forms.Label();
-            this.textBoxBigramm = new System.Windows.Forms.TextBox();
-            this.buttonBigrammFind = new System.Windows.Forms.Button();
             this.morphologicalAnalisysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redmineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fillWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelBigramm = new System.Windows.Forms.Label();
+            this.textBoxBigramm = new System.Windows.Forms.TextBox();
+            this.buttonBigrammFind = new System.Windows.Forms.Button();
+            this.buttonClasterize = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +87,29 @@
             this.mutualInformationToolStripMenuItem.Text = "Mutual Information";
             this.mutualInformationToolStripMenuItem.Click += new System.EventHandler(this.mutualInformationToolStripMenuItem_Click);
             // 
+            // morphologicalAnalisysToolStripMenuItem
+            // 
+            this.morphologicalAnalisysToolStripMenuItem.Enabled = false;
+            this.morphologicalAnalisysToolStripMenuItem.Name = "morphologicalAnalisysToolStripMenuItem";
+            this.morphologicalAnalisysToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
+            this.morphologicalAnalisysToolStripMenuItem.Text = "Morphological analisys";
+            this.morphologicalAnalisysToolStripMenuItem.Click += new System.EventHandler(this.morphologicalAnalisysToolStripMenuItem_Click);
+            // 
+            // redmineToolStripMenuItem
+            // 
+            this.redmineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fillWordsToolStripMenuItem});
+            this.redmineToolStripMenuItem.Name = "redmineToolStripMenuItem";
+            this.redmineToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.redmineToolStripMenuItem.Text = "Redmine";
+            // 
+            // fillWordsToolStripMenuItem
+            // 
+            this.fillWordsToolStripMenuItem.Name = "fillWordsToolStripMenuItem";
+            this.fillWordsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.fillWordsToolStripMenuItem.Text = "Fill words";
+            this.fillWordsToolStripMenuItem.Click += new System.EventHandler(this.fillWordsToolStripMenuItem_Click);
+            // 
             // labelBigramm
             // 
             this.labelBigramm.AutoSize = true;
@@ -116,34 +140,24 @@
             this.buttonBigrammFind.UseVisualStyleBackColor = true;
             this.buttonBigrammFind.Click += new System.EventHandler(this.buttonBigrammFind_Click);
             // 
-            // morphologicalAnalisysToolStripMenuItem
+            // buttonClasterize
             // 
-            this.morphologicalAnalisysToolStripMenuItem.Enabled = false;
-            this.morphologicalAnalisysToolStripMenuItem.Name = "morphologicalAnalisysToolStripMenuItem";
-            this.morphologicalAnalisysToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
-            this.morphologicalAnalisysToolStripMenuItem.Text = "Morphological analisys";
-            this.morphologicalAnalisysToolStripMenuItem.Click += new System.EventHandler(this.morphologicalAnalisysToolStripMenuItem_Click);
-            // 
-            // redmineToolStripMenuItem
-            // 
-            this.redmineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fillWordsToolStripMenuItem});
-            this.redmineToolStripMenuItem.Name = "redmineToolStripMenuItem";
-            this.redmineToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.redmineToolStripMenuItem.Text = "Redmine";
-            // 
-            // fillWordsToolStripMenuItem
-            // 
-            this.fillWordsToolStripMenuItem.Name = "fillWordsToolStripMenuItem";
-            this.fillWordsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fillWordsToolStripMenuItem.Text = "Fill words";
-            this.fillWordsToolStripMenuItem.Click += new System.EventHandler(this.fillWordsToolStripMenuItem_Click);
+            this.buttonClasterize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClasterize.Location = new System.Drawing.Point(15, 100);
+            this.buttonClasterize.Name = "buttonClasterize";
+            this.buttonClasterize.Size = new System.Drawing.Size(571, 27);
+            this.buttonClasterize.TabIndex = 5;
+            this.buttonClasterize.Text = "Кластеризация";
+            this.buttonClasterize.UseVisualStyleBackColor = true;
+            this.buttonClasterize.Click += new System.EventHandler(this.buttonClasterize_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 261);
+            this.Controls.Add(this.buttonClasterize);
             this.Controls.Add(this.buttonBigrammFind);
             this.Controls.Add(this.textBoxBigramm);
             this.Controls.Add(this.labelBigramm);
@@ -171,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem morphologicalAnalisysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redmineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fillWordsToolStripMenuItem;
+        private System.Windows.Forms.Button buttonClasterize;
     }
 }
 

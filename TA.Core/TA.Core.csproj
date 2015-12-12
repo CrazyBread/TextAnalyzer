@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Claster.cs" />
+    <Compile Include="ClasterAccessory.cs" />
+    <Compile Include="ClasterItem.cs" />
+    <Compile Include="ClasterizeBigram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

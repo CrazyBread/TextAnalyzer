@@ -27,7 +27,13 @@ namespace TA.Basic
             var otherBigrammsLeftLemm = _words.Where(t => t != bigrammWords[1]).Select(t => bigrammWords[0] + ' ' + t).ToList();
             var otherBigrammsRightLemm = _words.Where(t => t != bigrammWords[0]).Select(t => t + ' ' + bigrammWords[1]).ToList();
             var _wordsWithoutBigrammWords = _words.Where(t => !bigrammWords.Contains(t)).ToList();
-            var otherBigramms = _wordsWithoutBigrammWords.SelectMany(t => _wordsWithoutBigrammWords, (t, w) => t + ' ' + w).ToList();
+            var otherBigramms = new List<string>(); //_wordsWithoutBigrammWords.SelectMany(t => _wordsWithoutBigrammWords, (t, w) => t + ' ' + w).ToList();
+            for(int i = 0; i < _words.Count - 1; i++)
+            {
+                var otherBigrammText = _words[i] + " " + _words[i + 1];
+                if (otherBigrammText != bigramm)
+                    otherBigramms.Add(otherBigrammText);
+            }
 
             Frequency freq = new Frequency(_words);
             var a = freq.GetByBigramm(bigramm);
