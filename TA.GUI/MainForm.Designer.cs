@@ -79,6 +79,7 @@
             this.buttonATimeline.TabIndex = 4;
             this.buttonATimeline.Text = "Работа с временными рядами";
             this.buttonATimeline.UseVisualStyleBackColor = true;
+            this.buttonATimeline.Click += new System.EventHandler(this.buttonATimeline_Click);
             // 
             // buttonAOnth
             // 
@@ -90,6 +91,7 @@
             this.buttonAOnth.TabIndex = 3;
             this.buttonAOnth.Text = "Онтологический анализ";
             this.buttonAOnth.UseVisualStyleBackColor = true;
+            this.buttonAOnth.Click += new System.EventHandler(this.buttonAOnth_Click);
             // 
             // buttonAClaster
             // 
@@ -101,6 +103,7 @@
             this.buttonAClaster.TabIndex = 2;
             this.buttonAClaster.Text = "Кластерный анализ";
             this.buttonAClaster.UseVisualStyleBackColor = true;
+            this.buttonAClaster.Click += new System.EventHandler(this.buttonAClaster_Click);
             // 
             // buttonAMorph
             // 
@@ -112,6 +115,7 @@
             this.buttonAMorph.TabIndex = 1;
             this.buttonAMorph.Text = "Морфологический анализ";
             this.buttonAMorph.UseVisualStyleBackColor = true;
+            this.buttonAMorph.Click += new System.EventHandler(this.buttonAMorph_Click);
             // 
             // buttonAStatistic
             // 
@@ -123,6 +127,7 @@
             this.buttonAStatistic.TabIndex = 0;
             this.buttonAStatistic.Text = "Статистический анализ";
             this.buttonAStatistic.UseVisualStyleBackColor = true;
+            this.buttonAStatistic.Click += new System.EventHandler(this.buttonAStatistic_Click);
             // 
             // buttonAbout
             // 

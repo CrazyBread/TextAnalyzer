@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,11 +58,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalysisStaticForm.cs">
+    <Compile Include="AnalysisClasterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnalysisStaticForm.Designer.cs">
-      <DependentUpon>AnalysisStaticForm.cs</DependentUpon>
+    <Compile Include="AnalysisClasterForm.Designer.cs">
+      <DependentUpon>AnalysisClasterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisMorphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalysisMorphForm.Designer.cs">
+      <DependentUpon>AnalysisMorphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisOnthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalysisOnthForm.Designer.cs">
+      <DependentUpon>AnalysisOnthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisStatisticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalysisStatisticForm.Designer.cs">
+      <DependentUpon>AnalysisStatisticForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisTimelineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalysisTimelineForm.Designer.cs">
+      <DependentUpon>AnalysisTimelineForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -71,8 +96,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AnalysisStaticForm.resx">
-      <DependentUpon>AnalysisStaticForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnalysisStatisticForm.resx">
+      <DependentUpon>AnalysisStatisticForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnalysisTimelineForm.resx">
+      <DependentUpon>AnalysisTimelineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

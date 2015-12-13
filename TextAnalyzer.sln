@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Claster", "TA.Claster\TA.Claster.csproj", "{A052CE11-BE18-4049-98BC-BE9FB57017A2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{23C152C7-FC04-4F23-BFFD-864FF276FBCD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connectors", "Connectors", "{20837B12-2D61-4667-B123-7FA09B62C4E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Connector.Redmine", "TA.Connector.Redmine\TA.Connector.Redmine.csproj", "{34BC3895-64AD-4491-87A0-435308D29A5A}"

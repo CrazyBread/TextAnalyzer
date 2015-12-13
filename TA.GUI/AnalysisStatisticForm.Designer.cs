@@ -1,6 +1,6 @@
 ﻿namespace TA.GUI
 {
-    partial class AnalysisStaticForm
+    partial class AnalysisStatisticForm
     {
         /// <summary>
         /// Required designer variable.

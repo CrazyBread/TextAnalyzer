@@ -29,5 +29,30 @@ namespace TA.GUI
             string body = "Программа разработана {0}.\nГруппа — {1}.";
             MessageBox.Show(string.Format(body, who, group), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void buttonAStatistic_Click(object sender, EventArgs e)
+        {
+            new AnalysisStatisticForm().ShowDialog();
+        }
+
+        private void buttonAMorph_Click(object sender, EventArgs e)
+        {
+            new AnalysisMorphForm().ShowDialog();
+        }
+
+        private void buttonAClaster_Click(object sender, EventArgs e)
+        {
+            new AnalysisClasterForm().ShowDialog();
+        }
+
+        private void buttonAOnth_Click(object sender, EventArgs e)
+        {
+            new AnalysisOnthForm().ShowDialog();
+        }
+
+        private void buttonATimeline_Click(object sender, EventArgs e)
+        {
+            new AnalysisTimelineForm().ShowDialog();
+        }
     }
 }

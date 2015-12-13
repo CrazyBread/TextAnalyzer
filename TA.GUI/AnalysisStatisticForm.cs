@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace TA.GUI
 {
-    public partial class AnalysisStaticForm : Form
+    public partial class AnalysisStatisticForm : Form
     {
         private List<string> _words;
 
-        public AnalysisStaticForm()
+        public AnalysisStatisticForm()
         {
             InitializeComponent();
         }
