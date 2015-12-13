@@ -18,14 +18,13 @@ namespace TA.Statistic
             _words = words;
         }
 
-        public double Calculate(string word)
+        public double Calculate(string word, int collectionLength, int usedCount)
         {
-            throw new NotImplementedException();
-            //Frequency freq = new Frequency(_words);
-            //double f = freq.GetByOneWord(word);
-            //double TF = f / _words.Count;
-            //double IDF = 0;
-            //return TF * IDF;
+            Frequency freq = new Frequency(_words);
+            double f = freq.GetByOneWord(word);
+            double TF = f / _words.Count;
+            double IDF = Math.Log((collectionLength - usedCount)/usedCount);
+            return TF * IDF;
         }
     }
 }
