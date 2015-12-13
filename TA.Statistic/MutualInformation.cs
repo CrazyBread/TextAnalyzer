@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TA.Basic
+namespace TA.Statistic
 {
     /// <summary>
     /// Реализация статистического метода Mutual Information.

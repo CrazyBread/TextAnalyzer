@@ -45,9 +45,9 @@
     <Compile Include="Word.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TA.Core\TA.Core.csproj">
+    <ProjectReference Include="..\TA.Claster\TA.Claster.csproj">
       <Project>{a052ce11-be18-4049-98bc-be9fb57017a2}</Project>
-      <Name>TA.Core</Name>
+      <Name>TA.Claster</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
