@@ -1,0 +1,1472 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.readmine.ru/ontologies/redmine.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.readmine.ru/ontologies/redmine.owl">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal datatypeIRI="&xsd;string">Данная онтология описывает область разработки программного обеспечения в сфере ЖКХ</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#Area"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Controller"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Entity_Framework"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Linq"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MVC"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Stimulsoft"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Web_Config"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Автодополнение"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Блок"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Вкладки"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Водоснабжение"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Выпадающий_список"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ГВС"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ГИС_ЖКХ"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Галочка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Городское_Общежитие"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Государственная_Дума"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Государственная_Жилищная_Инспекция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Жилищный_кооператив"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Задача"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Заказчик"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Индивидуальный_Жилой_Дом"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Интеграция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Исполнитель"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Календарь"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Капитальный_ремонт"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Карта"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Кнопка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Контроллер"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Кровля"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Крыша"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Лифт"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Меню"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Министерство"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Младший_разработчик"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Многоквартирный_Дом"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Мусоропровод"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Направления_системы"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#НовыйФункционал"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Общежитие"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Орган_Местного_Самоуправления"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Организация"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Органы_государственной_власти"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Отделка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Отчет"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Отчеты"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ошибка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Пагинация"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Панель"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Перегородки"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Перекрытия"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Подвал"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Поддержка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Полы"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Программист"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Радио_кнопка"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Региональный_оператор_капитального_ремонта"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ресурсоснабжающая_организация"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Реформа_ЖКХ"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Сателиты"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Система_Начислений"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Скалярная_функция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Специализированные_АРМ"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Справочники"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Старшый_разработчик"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Стен"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Студенческое_общежитие"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Таблица"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Табличная_функция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Текстовое_поле"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Тестировщик"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Товарищество_Индивидуальных_Владельцев_Квартир"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Товарищество_Собственников_Жилья"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Триггер"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Управляющая_Компания"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Управляющая_организация"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Фасад"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Фильтр"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Форма"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Фундамент"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ХВС"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Хранимая_процедура"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Хранимая_функция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Человек"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Элемент_базы_данных"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Элемент_дома"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Элемент_интерфейса"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Элемент_программы"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#анализирует"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#контролируетКР"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ответственныйЗа"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#относитсяК"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#отправляетКДоработке"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#отправляетнаПриемку"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#поставил"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#поставляетРесурсы"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#производитРевью"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#разрабатывает"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#реализует"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#состоитИз"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ставится"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#тестирует"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#тестируется"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#управляет"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#ИмеетНаименование"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетАдрес"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетВерсию"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетИНН"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетИмя"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетЛемму"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетОписание"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетОценочноеВремя"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетРегион"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетРесурс"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетТему"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LinqToSQL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ЗаказчикБарнаул"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#МР_Коля"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Нарпавление_ОтчетыдляБарнаула"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#РОКР"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#СР_Женя"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ТаблицаДляКР"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ТестировщикВаня"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#УК_Аметист"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ФильтрНаСтраницеКР"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ХранимаяФункцияДляВыводаКР"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Area"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Controller"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Entity_Framework"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Linq"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MVC"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Stimulsoft"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Web_Config"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Автодополнение"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Блок"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Вкладки"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Водоснабжение"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Выпадающий_список"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ГВС"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ГИС_ЖКХ"/>
+        <Class IRI="#Интеграция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Галочка"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Городское_Общежитие"/>
+        <Class IRI="#Общежитие"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Государственная_Дума"/>
+        <Class IRI="#Органы_государственной_власти"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Государственная_Жилищная_Инспекция"/>
+        <Class IRI="#Органы_государственной_власти"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Жилищный_кооператив"/>
+        <Class IRI="#Управляющая_организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Задача"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Заказчик"/>
+        <Class IRI="#Человек"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Индивидуальный_Жилой_Дом"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Интеграция"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Исполнитель"/>
+        <Class IRI="#Человек"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Календарь"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Капитальный_ремонт"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Карта"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Кнопка"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Контроллер"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Кровля"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Крыша"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Лифт"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Меню"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Министерство"/>
+        <Class IRI="#Органы_государственной_власти"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Младший_разработчик"/>
+        <Class IRI="#Программист"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Многоквартирный_Дом"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Мусоропровод"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#НовыйФункционал"/>
+        <Class IRI="#Задача"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Общежитие"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Орган_Местного_Самоуправления"/>
+        <Class IRI="#Органы_государственной_власти"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Организация"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Органы_государственной_власти"/>
+        <Class IRI="#Организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Отделка"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Отчет"/>
+        <Class IRI="#Элемент_программы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Отчеты"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ошибка"/>
+        <Class IRI="#Задача"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Пагинация"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Панель"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Перегородки"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Перекрытия"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Подвал"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Поддержка"/>
+        <Class IRI="#Задача"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Полы"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Программист"/>
+        <Class IRI="#Исполнитель"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Радио_кнопка"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Региональный_оператор_капитального_ремонта"/>
+        <Class IRI="#Организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ресурсоснабжающая_организация"/>
+        <Class IRI="#Организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Реформа_ЖКХ"/>
+        <Class IRI="#Интеграция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Сателиты"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Система_Начислений"/>
+        <Class IRI="#Интеграция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Скалярная_функция"/>
+        <Class IRI="#Хранимая_функция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Специализированные_АРМ"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Справочники"/>
+        <Class IRI="#Направления_системы"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Старшый_разработчик"/>
+        <Class IRI="#Программист"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Стен"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Студенческое_общежитие"/>
+        <Class IRI="#Общежитие"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Таблица"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Табличная_функция"/>
+        <Class IRI="#Хранимая_функция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Текстовое_поле"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Тестировщик"/>
+        <Class IRI="#Исполнитель"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Товарищество_Индивидуальных_Владельцев_Квартир"/>
+        <Class IRI="#Управляющая_организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Товарищество_Собственников_Жилья"/>
+        <Class IRI="#Управляющая_организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Триггер"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Управляющая_Компания"/>
+        <Class IRI="#Управляющая_организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Управляющая_организация"/>
+        <Class IRI="#Организация"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Фасад"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Фильтр"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Форма"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Фундамент"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ХВС"/>
+        <Class IRI="#Элемент_дома"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Хранимая_процедура"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Хранимая_функция"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Человек"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Элемент_базы_данных"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Элемент_дома"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Элемент_интерфейса"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Элемент_программы"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Area"/>
+        <Class IRI="#Controller"/>
+        <Class IRI="#Entity_Framework"/>
+        <Class IRI="#Linq"/>
+        <Class IRI="#MVC"/>
+        <Class IRI="#Stimulsoft"/>
+        <Class IRI="#Web_Config"/>
+        <Class IRI="#Контроллер"/>
+        <Class IRI="#Отчет"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Автодополнение"/>
+        <Class IRI="#Блок"/>
+        <Class IRI="#Вкладки"/>
+        <Class IRI="#Выпадающий_список"/>
+        <Class IRI="#Галочка"/>
+        <Class IRI="#Календарь"/>
+        <Class IRI="#Карта"/>
+        <Class IRI="#Кнопка"/>
+        <Class IRI="#Меню"/>
+        <Class IRI="#Пагинация"/>
+        <Class IRI="#Панель"/>
+        <Class IRI="#Радио_кнопка"/>
+        <Class IRI="#Текстовое_поле"/>
+        <Class IRI="#Фильтр"/>
+        <Class IRI="#Форма"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Водоснабжение"/>
+        <Class IRI="#ГВС"/>
+        <Class IRI="#Кровля"/>
+        <Class IRI="#Крыша"/>
+        <Class IRI="#Лифт"/>
+        <Class IRI="#Мусоропровод"/>
+        <Class IRI="#Отделка"/>
+        <Class IRI="#Перегородки"/>
+        <Class IRI="#Перекрытия"/>
+        <Class IRI="#Подвал"/>
+        <Class IRI="#Полы"/>
+        <Class IRI="#Стен"/>
+        <Class IRI="#Фасад"/>
+        <Class IRI="#Фундамент"/>
+        <Class IRI="#ХВС"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ГИС_ЖКХ"/>
+        <Class IRI="#Реформа_ЖКХ"/>
+        <Class IRI="#Система_Начислений"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Городское_Общежитие"/>
+        <Class IRI="#Студенческое_общежитие"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Государственная_Дума"/>
+        <Class IRI="#Государственная_Жилищная_Инспекция"/>
+        <Class IRI="#Министерство"/>
+        <Class IRI="#Орган_Местного_Самоуправления"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Жилищный_кооператив"/>
+        <Class IRI="#Товарищество_Индивидуальных_Владельцев_Квартир"/>
+        <Class IRI="#Товарищество_Собственников_Жилья"/>
+        <Class IRI="#Управляющая_Компания"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Задача"/>
+        <Class IRI="#Человек"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Заказчик"/>
+        <Class IRI="#Исполнитель"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Интеграция"/>
+        <Class IRI="#Капитальный_ремонт"/>
+        <Class IRI="#Отчеты"/>
+        <Class IRI="#Сателиты"/>
+        <Class IRI="#Специализированные_АРМ"/>
+        <Class IRI="#Справочники"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Программист"/>
+        <Class IRI="#Тестировщик"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Скалярная_функция"/>
+        <Class IRI="#Табличная_функция"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Таблица"/>
+        <Class IRI="#Триггер"/>
+        <Class IRI="#Хранимая_процедура"/>
+        <Class IRI="#Хранимая_функция"/>
+    </DisjointClasses>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#реализует"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#ХранимаяФункцияДляВыводаКР"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#реализует"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#ТаблицаДляКР"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#реализует"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#ФильтрНаСтраницеКР"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#реализует"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#LinqToSQL"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ставится"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#ЗаказчикБарнаул"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#тестируется"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <NamedIndividual IRI="#ТестировщикВаня"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#поставил"/>
+        <NamedIndividual IRI="#ЗаказчикБарнаул"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#разрабатывает"/>
+        <NamedIndividual IRI="#МР_Коля"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#контролируетКР"/>
+        <NamedIndividual IRI="#РОКР"/>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#поставляетРесурсы"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ответственныйЗа"/>
+        <NamedIndividual IRI="#СР_Женя"/>
+        <NamedIndividual IRI="#Нарпавление_ОтчетыдляБарнаула"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#производитРевью"/>
+        <NamedIndividual IRI="#СР_Женя"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#тестирует"/>
+        <NamedIndividual IRI="#ТестировщикВаня"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#управляет"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#относитсяК"/>
+        <NamedIndividual IRI="#ХранимаяФункцияДляВыводаКР"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#LinqToSQL"/>
+        <Literal datatypeIRI="&xsd;string">LinqToSQL</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#LinqToSQL"/>
+        <Literal datatypeIRI="&xsd;string">Linq To SQL</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+        <Literal datatypeIRI="&xsd;string">ГЖИ Ульяновской области</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+        <Literal datatypeIRI="&xsd;string">ГЖИ Ульяновской области</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ГЖИ_Ульяновска"/>
+        <Literal datatypeIRI="&xsd;string">ГЖИ Ульяновск</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетВерсию"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <Literal datatypeIRI="&xsd;string">Отчетник 1.2.1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <Literal datatypeIRI="&xsd;string">Задача на отчет</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетОписание"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <Literal datatypeIRI="&xsd;string">Необходимо схормировать отчет, в котором выводятся дома из региональной программы капитального ремонта. Также необходимо сделат фильтр по работе со списком отчетов, которые должны выводиться на странице.
+Обязательно использовать доступ к данным через Linq to SQL, вынести это в отдельную таблицу базы данных и выводить через функцию.</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетОценочноеВремя"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <Literal datatypeIRI="&xsd;decimal">4.4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетТему"/>
+        <NamedIndividual IRI="#ЗадачаНаОтчет"/>
+        <Literal datatypeIRI="&xsd;string">Сформировать отчет для Барнаула по форме 1468 для Капитального ремонта</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ЗаказчикБарнаул"/>
+        <Literal datatypeIRI="&xsd;string">Заказчик Барнаул</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРегион"/>
+        <NamedIndividual IRI="#ЗаказчикБарнаул"/>
+        <Literal datatypeIRI="&xsd;string">Барнаул</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетАдрес"/>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+        <Literal datatypeIRI="&xsd;string">г. Ульяновск, ул. Камышинская, д. 123, кв.12</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ИЖД_Камышинская12"/>
+        <Literal datatypeIRI="&xsd;string">ИЖД Камышинская</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетИмя"/>
+        <NamedIndividual IRI="#МР_Коля"/>
+        <Literal datatypeIRI="&xsd;string">Коля</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#МР_Коля"/>
+        <Literal datatypeIRI="&xsd;string">МР Коля</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#Нарпавление_ОтчетыдляБарнаула"/>
+        <Literal datatypeIRI="&xsd;string">Отчет для Барнаула</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#Нарпавление_ОтчетыдляБарнаула"/>
+        <Literal datatypeIRI="&xsd;string">Направление отчет для Барнаул</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#РОКР"/>
+        <Literal datatypeIRI="&xsd;string">Региональный оператор капитального ремонта</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <NamedIndividual IRI="#РОКР"/>
+        <Literal datatypeIRI="&xsd;string">РОКР</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#РОКР"/>
+        <Literal datatypeIRI="&xsd;string">РОКР</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетИНН"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+        <Literal datatypeIRI="&xsd;string">73021524</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+        <Literal datatypeIRI="&xsd;string">ООО ТеплоПром</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+        <Literal datatypeIRI="&xsd;string">РСО Теплопром</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРесурс"/>
+        <NamedIndividual IRI="#РСО_теплоПром"/>
+        <Literal datatypeIRI="&xsd;string">Водоотведение</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетИмя"/>
+        <NamedIndividual IRI="#СР_Женя"/>
+        <Literal datatypeIRI="&xsd;string">Женя</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#СР_Женя"/>
+        <Literal datatypeIRI="&xsd;string">СР Женя</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#ТаблицаДляКР"/>
+        <Literal datatypeIRI="&xsd;string">Таблица для капитального ремонта</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ТаблицаДляКР"/>
+        <Literal datatypeIRI="&xsd;string">Таблица для КР</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетИмя"/>
+        <NamedIndividual IRI="#ТестировщикВаня"/>
+        <Literal datatypeIRI="&xsd;string">Ваня</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ТестировщикВаня"/>
+        <Literal datatypeIRI="&xsd;string">Тестировщик Ваня</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+        <Literal datatypeIRI="&xsd;string">УК ООО Аметист</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетИНН"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+        <Literal datatypeIRI="&xsd;string">73123452</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+        <Literal datatypeIRI="&xsd;string">ООО Аметист</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#УК_Аметист"/>
+        <Literal datatypeIRI="&xsd;string">УК Аметист</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#ФильтрНаСтраницеКР"/>
+        <Literal datatypeIRI="&xsd;string">Фильтр на странице капитального ремонта</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ФильтрНаСтраницеКР"/>
+        <Literal datatypeIRI="&xsd;string">Фильтр на страница КР</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <NamedIndividual IRI="#ХранимаяФункцияДляВыводаКР"/>
+        <Literal datatypeIRI="&xsd;string">Хранимая функция для вывода данных по Капитальному Ремонту</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетЛемму"/>
+        <NamedIndividual IRI="#ХранимаяФункцияДляВыводаКР"/>
+        <Literal datatypeIRI="&xsd;string">Франимый процедура для вывод КР</Literal>
+    </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#ставится"/>
+        <ObjectProperty IRI="#поставил"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#тестирует"/>
+        <ObjectProperty IRI="#тестируется"/>
+    </InverseObjectProperties>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#анализирует"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#контролируетКР"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#ответственныйЗа"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#относитсяК"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#отправляетКДоработке"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#отправляетнаПриемку"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#поставил"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#поставляетРесурсы"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#производитРевью"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#разрабатывает"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#реализует"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#состоитИз"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#ставится"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#тестирует"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#тестируется"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#управляет"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#анализирует"/>
+        <Class IRI="#Программист"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+        <Class IRI="#Органы_государственной_власти"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#контролируетКР"/>
+        <Class IRI="#Региональный_оператор_капитального_ремонта"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ответственныйЗа"/>
+        <Class IRI="#Старшый_разработчик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#относитсяК"/>
+        <Class IRI="#Направления_системы"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#отправляетКДоработке"/>
+        <Class IRI="#Старшый_разработчик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#отправляетКДоработке"/>
+        <Class IRI="#Тестировщик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#отправляетнаПриемку"/>
+        <Class IRI="#Тестировщик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#поставил"/>
+        <Class IRI="#Заказчик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#поставляетРесурсы"/>
+        <Class IRI="#Ресурсоснабжающая_организация"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#производитРевью"/>
+        <Class IRI="#Старшый_разработчик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#разрабатывает"/>
+        <Class IRI="#Программист"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#реализует"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#состоитИз"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ставится"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#тестирует"/>
+        <Class IRI="#Тестировщик"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#тестируется"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#управляет"/>
+        <Class IRI="#Управляющая_организация"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#анализирует"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+        <Class IRI="#Ресурсоснабжающая_организация"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#контролируетДеятельность"/>
+        <Class IRI="#Управляющая_организация"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#контролируетКР"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ответственныйЗа"/>
+        <Class IRI="#Направления_системы"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#относитсяК"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#отправляетКДоработке"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#отправляетнаПриемку"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#поставил"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#поставляетРесурсы"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#производитРевью"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#разрабатывает"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#реализует"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#реализует"/>
+        <Class IRI="#Элемент_интерфейса"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#реализует"/>
+        <Class IRI="#Элемент_программы"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#состоитИз"/>
+        <Class IRI="#Элемент_дома"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ставится"/>
+        <Class IRI="#Заказчик"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#тестирует"/>
+        <Class IRI="#Задача"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#тестируется"/>
+        <Class IRI="#Тестировщик"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#управляет"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетАдрес"/>
+        <Class IRI="#Объект_Жилого_Фонда"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетВерсию"/>
+        <Class IRI="#Элемент_базы_данных"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетВерсию"/>
+        <Class IRI="#Элемент_программы"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетИНН"/>
+        <Class IRI="#Организация"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетИмя"/>
+        <Class IRI="#Человек"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <Class IRI="#Организация"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетЛемму"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетОписание"/>
+        <Class IRI="#Задача"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетОценочноеВремя"/>
+        <Class IRI="#Задача"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетРегион"/>
+        <Class IRI="#Заказчик"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетРесурс"/>
+        <Class IRI="#Ресурсоснабжающая_организация"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетТему"/>
+        <Class IRI="#Задача"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#ИмеетНаименование"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетАдрес"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетВерсию"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетИНН"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетИмя"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетКороткоеНазвание"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетЛемму"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетОписание"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетОценочноеВремя"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетРегион"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетРесурс"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетТему"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

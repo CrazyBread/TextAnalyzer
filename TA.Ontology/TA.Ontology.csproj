@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\FindOntoResult.cs" />
     <Compile Include="Classes\OntoClass.cs" />
-    <Compile Include="Classes\RelationObject.cs" />
     <Compile Include="OntologyLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

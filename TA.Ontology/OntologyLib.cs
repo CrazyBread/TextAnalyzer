@@ -11,7 +11,7 @@ namespace TA.Ontology
 {
     public class OntologyLib
     {
-        public List<OntoClass> OntoClassList = new List<OntoClass>();
+        private List<OntoClass> OntoClassList = new List<OntoClass>();
         private string _PathToOntologyFile = string.Empty;
 
         public OntologyLib(string pathToOntologyFile)
@@ -31,12 +31,12 @@ namespace TA.Ontology
             _ParseOntoClassList(xmlDoc);
             _ParseOntoIndividualLemm(xmlDoc);
             _ParsSubClassOf(xmlDoc);
-            _ModifyLemmState();
+           // _ModifyLemmState();
         }
 
-        public string GetLemmByClass(string Name)
+        private string GetLemmByClass(string Name)
         {
-            return Name.Replace("#", string.Empty).Replace("_", " ");
+            return Name.Replace("#", string.Empty).Replace("_", " ").ToUpper();
         }
 
         private void _ParseOntoClassList(XmlDocument xmlDoc)
@@ -68,7 +68,7 @@ namespace TA.Ontology
                     string individualName = prop.ChildNodes[1].Attributes["IRI"].Value;
                     string lemm = prop.ChildNodes[2].InnerXml;
                     var ontoClassItem = OntoClassList.First(m => m.Name == individualName);
-                    ontoClassItem.Lemm = lemm;
+                    ontoClassItem.Lemm = lemm.ToUpper();
                 }
 
             }
@@ -92,13 +92,21 @@ namespace TA.Ontology
 
         private void _ModifyLemmState()
         {
-            List<string> lemmList = OntoClassList.Select(m => m.Lemm).ToList();
-            MorphLib morphLib = new MorphLib(lemmList);
-            var morphList = morphLib.ToMainForm();
-            for (int i = 0; i < OntoClassList.Count; i++)
+            foreach (var item in OntoClassList)
             {
-                OntoClassList[i].Lemm = morphList[i];
+                MorphLib morphLib = new MorphLib(item.Lemm);
+                item.Lemm = string.Join(" ", morphLib.ToMainForm());
             }
+        }
+
+        public FindOntoResult FindWord(string word)
+        {
+            word = word.ToUpper();
+            return new FindOntoResult
+            {
+                findedList = OntoClassList.Where(m => m.Lemm == word).ToList(),
+                findedFazyList = OntoClassList.Where(m => m.Lemm != word && m.Lemm.Contains(word)).ToList()
+            };
         }
     }
 }
