@@ -12,9 +12,14 @@ namespace TA.GUI
 {
     public partial class AnalysisClasterForm : Form
     {
-        public AnalysisClasterForm()
+        private List<string> _words;
+        private Connector.Redmine.Model.Issue _task;
+
+        public AnalysisClasterForm(List<string> words, Connector.Redmine.Model.Issue task)
         {
             InitializeComponent();
+            _words = words;
+            _task = task;
         }
 
         private void buttonClasterize_Click(object sender, EventArgs e)
@@ -24,7 +29,7 @@ namespace TA.GUI
             {
                 var text = System.IO.File.ReadAllText(dialog.FileName);
                 var morphLib = new TA.Morph.MorphLib(text);
-                var firstFormWords = morphLib.Filter("S", "A");
+                var firstFormWords = morphLib.ToMainForm("S", "A");
                 var firstFormString = string.Join(" ", firstFormWords);
 
                 var method1 = new TA.Statistic.MutualInformation(firstFormWords);

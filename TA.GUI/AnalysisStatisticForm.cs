@@ -16,15 +16,37 @@ namespace TA.GUI
         private List<string> _words;
         private Connector.Redmine.Model.Issue _task;
 
-        public AnalysisStatisticForm()
+        public AnalysisStatisticForm(List<string> words, Connector.Redmine.Model.Issue task)
         {
             InitializeComponent();
-            buttonsDisable();
+            Logger.TextChanged += (sender, e) => 
+            {
+                resultTextBox.Text = e;
+            };
             resultTextBox.TextChanged += (sender, e) =>
             {
                 resultTextBox.SelectionStart = resultTextBox.TextLength;
                 resultTextBox.ScrollToCaret();
             };
+            _words = words;
+            _task = task;
+            Logger.LogHtml("<h1>Статистический анализ</h1>");
+            Logger.LogText("Статистический анализ");
+
+            // get frequency of words
+            var freqLib = new TA.Statistic.Frequency(_words);
+            var orderedWords = freqLib.Process().OrderByDescending(i => i.count);
+
+            // log it
+            Logger.LogHtml("<h2>Частота употребления слов</h2><ul>");
+            Logger.LogText("ЧАСТОТА УПОТРЕБЛЕНИЯ СЛОВ:");
+            foreach (var item in orderedWords)
+            {
+                Logger.LogHtml(string.Format("<li><strong>{0}</strong> — {1}</li>", item.word, item.count));
+                Logger.LogText(string.Format("  {0} — {1}", item.word, item.count));
+            }
+            resultTextBox.Text += "\r\n";
+            Logger.LogHtml("</ul>");
         }
 
         #region TODO: replace or delete
@@ -41,7 +63,7 @@ namespace TA.GUI
                 foreach (var statement in issueStatements)
                 {
                     var morphLib = new TA.Morph.MorphLib(statement);
-                    var wrds = morphLib.Filter("S", "A");//, "V", "ANUM", "APRO", "NUM", "SPRO", "ADV");
+                    var wrds = morphLib.ToMainForm("S", "A");//, "V", "ANUM", "APRO", "NUM", "SPRO", "ADV");
                     var wrdsFreq = new Statistic.Frequency(wrds);
                     var wrdsFreqResult = wrdsFreq.Process();
                     foreach (var word in wrdsFreqResult)
@@ -59,38 +81,6 @@ namespace TA.GUI
             }
         }
         #endregion
-
-        private void taskButton_Click(object sender, EventArgs e)
-        {
-            int? taskId;
-            using (RedmineTaskSelector form = new RedmineTaskSelector())
-            {
-                form.ShowDialog();
-                taskId = form.TaskId;
-            }
-            if (taskId == null || !taskId.HasValue)
-            {
-                MessageBox.Show("Задача не выбрана.");
-                return;
-            }
-            _task = Connector.Redmine.Connector.GetIssues(taskId.Value);
-            taskTextBox.Text = string.Format("[#{0}] {1}", _task.RedmineId, _task.Subject);
-            buttonsEnable();
-            resultTextBox.Text = string.Empty;
-
-            // get words array
-            var morphLib = new TA.Morph.MorphLib(_task.Description.ToUpper());
-            _words = morphLib.ToMainForm();
-            resultTextBox.Text = string.Format("[{0}]\r\n\r\n", string.Join(" ", _words));
-
-            // get frequency of words
-            var freqLib = new TA.Statistic.Frequency(_words);
-            var orderedWords = freqLib.Process().OrderByDescending(i => i.count);
-            resultTextBox.Text += "ЧАСТОТА УПОТРЕБЛЕНИЯ СЛОВ:\r\n";
-            foreach (var item in orderedWords)
-                resultTextBox.Text += string.Format("  {0} — {1}\r\n", item.word, item.count);
-            resultTextBox.Text += "\r\n";
-        }
 
         private void buttonFreq_Click(object sender, EventArgs e)
         {
@@ -111,7 +101,8 @@ namespace TA.GUI
             if (isTwoWords()) result = freqLib.GetByBigramm(sourceString);
 
             // print result
-            resultTextBox.Text += string.Format("Поиск частоты [{0}]: {1} из {2}.\r\n", sourceString, result, _words.Count);
+            Logger.LogText(string.Format("Поиск частоты [{0}]: {1} из {2}.", sourceString, result, _words.Count));
+            Logger.LogHtml(string.Format("<p><strong>Поиск частоты [{0}]:</strong> {1} из числа слов: {2}.</p>", sourceString, result, _words.Count));
         }
 
         private void buttonMI_Click(object sender, EventArgs e)
@@ -131,7 +122,8 @@ namespace TA.GUI
             var result = muturalInf.Calculate(sourceString);
 
             // print result
-            resultTextBox.Text += string.Format("Метод Mutural-Information [{0}]: {1}.\r\n", sourceString, result);
+            Logger.LogText(string.Format("Метод Mutural-Information [{0}]: {1}.", sourceString, result));
+            Logger.LogHtml(string.Format("<p><strong>Метод Mutural-Information [{0}]:</strong> {1}.</p>", sourceString, result));
         }
 
         private void buttonTScore_Click(object sender, EventArgs e)
@@ -151,7 +143,8 @@ namespace TA.GUI
             var result = tScore.Calculate(sourceString);
 
             // print result
-            resultTextBox.Text += string.Format("Метод T-Score [{0}]: {1}.\r\n", sourceString, result);
+            Logger.LogText(string.Format("Метод T-Score [{0}]: {1}.", sourceString, result));
+            Logger.LogHtml(string.Format("<p><strong>Метод T-Score [{0}]:</strong> {1}.</p>", sourceString, result));
         }
 
         private void buttonLogLikehood_Click(object sender, EventArgs e)
@@ -171,7 +164,8 @@ namespace TA.GUI
             var result = logLikeihood.Calculate(sourceString);
 
             // print result
-            resultTextBox.Text += string.Format("Метод Log-Likelihood [{0}]: {1}.\r\n", sourceString, result);
+            Logger.LogText(string.Format("Метод Log-Likelihood [{0}]: {1}.", sourceString, result));
+            Logger.LogHtml(string.Format("<p><strong>Метод Log-Likelihood [{0}]:</strong> {1}.</p>", sourceString, result));
         }
 
         private void buttonTfIdf_Click(object sender, EventArgs e)
@@ -200,22 +194,11 @@ namespace TA.GUI
             var result = tfIdf.Calculate(sourceString, collectionLength, usedCount);
 
             // print result
-            resultTextBox.Text += string.Format("Метод TF*IDF [{0}]: {1}.\r\n", sourceString, result);
+            Logger.LogText(string.Format("Метод TF*IDF [{0}]: {1}.", sourceString, result));
+            Logger.LogHtml(string.Format("<p><strong>Метод TF*IDF [{0}]:</strong> {1}.</p>", sourceString, result));
         }
 
         #region other stuff
-        private void buttonsDisable()
-        {
-            foreach (Control control in actionsGroupBox.Controls)
-                control.Enabled = false;
-        }
-
-        private void buttonsEnable()
-        {
-            foreach (Control control in actionsGroupBox.Controls)
-                control.Enabled = true;
-        }
-
         private bool isOneWord()
         {
             Regex r = new Regex("[A-Za-zА-Яа-я]+");

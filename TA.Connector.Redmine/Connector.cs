@@ -36,12 +36,12 @@ namespace TA.Connector.Redmine
             return result;
         }
 
-        public static Model.Issue GetIssues(int redmineId)
+        public static Model.Issue GetIssue(int redmineId)
         {
             Model.Issue result = null;
             using (var db = new Model.dbEntities())
             {
-                result = db.Issues.FirstOrDefault(i => i.RedmineId == redmineId);
+                result = db.Issues.Include("Project").Include("Status").Include("Assignee").FirstOrDefault(i => i.RedmineId == redmineId);
             }
             return result;
         }
