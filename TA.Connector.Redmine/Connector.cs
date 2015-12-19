@@ -17,7 +17,7 @@ namespace TA.Connector.Redmine
             List<Model.Issue> result = null;
             using(var db = new Model.dbEntities())
             {
-                result = db.Issues.Include("Status").ToList();
+                result = db.Issues.Include("Status").OrderByDescending(i => i.RedmineId).ToList();
             }
             return result;
         }

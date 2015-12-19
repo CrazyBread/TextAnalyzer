@@ -69,6 +69,8 @@
           <Property Name="IssueId" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="WordsInText" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_Issue_Facet_Assignee">
           <End Role="Facet" Type="Self.Facet" Multiplicity="0..1" />
@@ -379,6 +381,8 @@
           <Property Name="Text" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Count" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Issue" Relationship="dbModel.FK_Word_Issue" FromRole="Word" ToRole="Issue" />
+          <Property Name="WordsInText" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="2" />
         </EntityType>
         <Association Name="FK_Word_Issue">
           <End Type="dbModel.Issue" Role="Issue" Multiplicity="1" />
@@ -524,6 +528,8 @@
           <EntitySetMapping Name="Words">
             <EntityTypeMapping TypeName="dbModel.Word">
               <MappingFragment StoreEntitySet="Word">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="WordsInText" ColumnName="WordsInText" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="IssueId" ColumnName="IssueId" />

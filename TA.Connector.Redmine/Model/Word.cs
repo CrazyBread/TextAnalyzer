@@ -18,6 +18,8 @@ namespace TA.Connector.Redmine.Model
         public int IssueId { get; set; }
         public string Text { get; set; }
         public int Count { get; set; }
+        public int WordsInText { get; set; }
+        public System.DateTime Created { get; set; }
     
         public virtual Issue Issue { get; set; }
     }

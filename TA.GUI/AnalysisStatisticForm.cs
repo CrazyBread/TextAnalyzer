@@ -79,18 +79,29 @@ namespace TA.GUI
         private void fillWordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var issues = TA.Connector.Redmine.Connector.GetAllIssues();
+            var statementSplitters = new string[] { ".", ",", "?", "!", ";", "\r", "\n" };
 
             foreach (var issue in issues)
             {
                 System.Diagnostics.Trace.WriteLine(issue.RedmineId);
 
-                var morphLib = new TA.Morph.MorphLib(issue.Description);
-                var wrds = morphLib.Filter("V", "S", "A", "ANUM", "APRO", "NUM", "SPRO", "ADV");
-                var wrdsFreq = new Statistic.Frequency(wrds);
-                var wrdsFreqResult = wrdsFreq.Process();
-                foreach (var word in wrdsFreqResult)
+                var issueStatements = issue.Description.Split(statementSplitters, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var statement in issueStatements)
                 {
-                    TA.Connector.Redmine.WordCollector.Collect(issue.Id, word.word, word.count);
+                    var morphLib = new TA.Morph.MorphLib(statement);
+                    var wrds = morphLib.Filter("S", "A");//, "V", "ANUM", "APRO", "NUM", "SPRO", "ADV");
+                    var wrdsFreq = new Statistic.Frequency(wrds);
+                    var wrdsFreqResult = wrdsFreq.Process();
+                    foreach (var word in wrdsFreqResult)
+                    {
+                        TA.Connector.Redmine.WordCollector.Collect(issue.Id, word.word, word.count, 1);
+                    }
+
+                    for(int i = 1; i < wrds.Count; i++)
+                    {
+                        string bigramm = wrds[i - 1] + " " + wrds[i];
+                        TA.Connector.Redmine.WordCollector.Collect(issue.Id, bigramm, wrdsFreq.GetByBigramm(bigramm), 2);
+                    }
                 }
                 TA.Connector.Redmine.WordCollector.Submit();
             }

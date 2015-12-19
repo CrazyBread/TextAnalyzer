@@ -34,7 +34,7 @@
             // comboBoxStatuses
             // 
             this.comboBoxStatuses.FormattingEnabled = true;
-            this.comboBoxStatuses.Location = new System.Drawing.Point(12, 12);
+            this.comboBoxStatuses.Location = new System.Drawing.Point(12, 39);
             this.comboBoxStatuses.Name = "comboBoxStatuses";
             this.comboBoxStatuses.Size = new System.Drawing.Size(332, 21);
             this.comboBoxStatuses.TabIndex = 0;
