@@ -31,7 +31,7 @@ namespace TA.Morph
             if (string.IsNullOrEmpty(_sourceString) && (_words == null || _words.Count == 0))
                 return new List<Word>();
 
-            var tempFileName = @"D:\taText.tmp"; //Path.GetTempFileName();
+            var tempFileName = Path.GetTempFileName();
             if (string.IsNullOrEmpty(_sourceString))
             {
                 var inputString = string.Join(" ", _words);

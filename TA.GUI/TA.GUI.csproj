@@ -108,6 +108,9 @@
     <EmbeddedResource Include="AnalysisMorphForm.resx">
       <DependentUpon>AnalysisMorphForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AnalysisOntologyForm.resx">
+      <DependentUpon>AnalysisOntologyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnalysisStatisticForm.resx">
       <DependentUpon>AnalysisStatisticForm.cs</DependentUpon>
     </EmbeddedResource>
