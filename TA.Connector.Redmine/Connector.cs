@@ -17,7 +17,7 @@ namespace TA.Connector.Redmine
             List<Model.Issue> result = null;
             using(var db = new Model.dbEntities())
             {
-                result = db.Issues.Include("Status").OrderByDescending(i => i.RedmineId).ToList();
+                result = db.Issues.Include("Status").Include("Assignee").OrderByDescending(i => i.RedmineId).ToList();
             }
             return result;
         }
@@ -32,6 +32,16 @@ namespace TA.Connector.Redmine
             using (var db = new Model.dbEntities())
             {
                 result = db.Facets.Where(i => i.Group == "status").ToList();
+            }
+            return result;
+        }
+
+        public static Model.Issue GetIssues(int redmineId)
+        {
+            Model.Issue result = null;
+            using (var db = new Model.dbEntities())
+            {
+                result = db.Issues.FirstOrDefault(i => i.RedmineId == redmineId);
             }
             return result;
         }

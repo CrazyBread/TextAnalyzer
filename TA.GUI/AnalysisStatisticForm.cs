@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,12 +14,20 @@ namespace TA.GUI
     public partial class AnalysisStatisticForm : Form
     {
         private List<string> _words;
+        private Connector.Redmine.Model.Issue _task;
 
         public AnalysisStatisticForm()
         {
             InitializeComponent();
+            buttonsDisable();
+            resultTextBox.TextChanged += (sender, e) =>
+            {
+                resultTextBox.SelectionStart = resultTextBox.TextLength;
+                resultTextBox.ScrollToCaret();
+            };
         }
 
+        #region TODO: replace or delete
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dialog = new OpenFileDialog();
@@ -45,7 +54,7 @@ namespace TA.GUI
         private void mutualInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var mutInf = new TA.Statistic.MutualInformation(_words);
-            var result = mutInf.Calculate(textBoxBigramm.Text.ToUpper());
+            var result = mutInf.Calculate("ГИС ЖКХ");
             MessageBox.Show(result.ToString());
         }
 
@@ -67,8 +76,7 @@ namespace TA.GUI
                 }
             }
 
-            textBoxBigramm.Text = resultBigramm;
-            MessageBox.Show(resultCoef.ToString());
+            MessageBox.Show(resultBigramm + ": " + resultCoef.ToString());
         }
 
         private void morphologicalAnalisysToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,7 +105,7 @@ namespace TA.GUI
                         TA.Connector.Redmine.WordCollector.Collect(issue.Id, word.word, word.count, 1);
                     }
 
-                    for(int i = 1; i < wrds.Count; i++)
+                    for (int i = 1; i < wrds.Count; i++)
                     {
                         string bigramm = wrds[i - 1] + " " + wrds[i];
                         TA.Connector.Redmine.WordCollector.Collect(issue.Id, bigramm, wrdsFreq.GetByBigramm(bigramm), 2);
@@ -106,61 +114,113 @@ namespace TA.GUI
                 TA.Connector.Redmine.WordCollector.Submit();
             }
         }
+        #endregion
 
-        private void buttonClasterize_Click(object sender, EventArgs e)
+        private void taskButton_Click(object sender, EventArgs e)
         {
-            var dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            int? taskId;
+            using (RedmineTaskSelector form = new RedmineTaskSelector())
             {
-                var text = System.IO.File.ReadAllText(dialog.FileName);
-                var morphLib = new TA.Morph.MorphLib(text);
-                var firstFormWords = morphLib.Filter("S", "A");
-                var firstFormString = string.Join(" ", firstFormWords);
-
-                var method1 = new TA.Statistic.MutualInformation(firstFormWords);
-                var method2 = new TA.Statistic.TScore(firstFormWords);
-                var method3 = new TA.Statistic.LogLikelihood(firstFormWords);
-
-                var clasterItems = new List<Claster.ClasterItem>();
-                for (int i = 0; i < firstFormWords.Count - 1; i++)
-                {
-                    var clasterItemText = firstFormWords[i] + " " + firstFormWords[i + 1];
-                    if (clasterItems.Any(j => j.Item.ToString() == clasterItemText))
-                        continue;
-                    var m1 = method1.Calculate(clasterItemText);
-                    var m2 = method2.Calculate(clasterItemText);
-                    var m3 = method3.Calculate(clasterItemText);
-                    var clasterItem = new Claster.ClasterItem(3) { Item = clasterItemText };
-                    clasterItem.SetValue(0, m1);
-                    clasterItem.SetValue(1, m2);
-                    clasterItem.SetValue(2, m3);
-                    clasterItems.Add(clasterItem);
-                }
-
-                var clasterizeBigrams = new TA.Claster.ClasterizeBigram(text, clasterItems);
-                clasterizeBigrams.Run();
-                clasterizeBigrams.PrintResult(@"d:\result.txt");
+                form.ShowDialog();
+                taskId = form.TaskId;
             }
+            if (taskId == null || !taskId.HasValue)
+            {
+                MessageBox.Show("Задача не выбрана.");
+                return;
+            }
+            _task = Connector.Redmine.Connector.GetIssues(taskId.Value);
+            taskTextBox.Text = string.Format("[#{0}] {1}", _task.RedmineId, _task.Subject);
+            buttonsEnable();
+            resultTextBox.Text = string.Empty;
+
+            // get words array
+            var morphLib = new TA.Morph.MorphLib(_task.Description.ToUpper());
+            _words = morphLib.ToMainForm();
+            resultTextBox.Text = string.Format("[{0}]\r\n\r\n", string.Join(" ", _words));
+
+            // get frequency of words
+            var freqLib = new TA.Statistic.Frequency(_words);
+            var orderedWords = freqLib.Process().OrderByDescending(i => i.count);
+            resultTextBox.Text += "ЧАСТОТА УПОТРЕБЛЕНИЯ СЛОВ:\r\n";
+            foreach (var item in orderedWords)
+                resultTextBox.Text += string.Format("  {0} — {1}\r\n", item.word, item.count);
+            resultTextBox.Text += "\r\n";
         }
 
-        private void loadToolStripMenuItem1_Click(object sender, EventArgs e)
+        #region other stuff
+        private void buttonsDisable()
         {
-            Connector.Redmine.IssueLoader ir = new Connector.Redmine.IssueLoader(new Connector.Redmine.RedmineConfigurator()
-            {
-                Link = "http://redmine.aisgorod.ru",
-                Key = "3a2901bd622185835374cb45e9c98a58644df40f"
-            });
-            ir.Run();
+            foreach (Control control in actionsGroupBox.Controls)
+                control.Enabled = false;
         }
 
-        private void loadStatusesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonsEnable()
         {
-            Connector.Redmine.IssueLoader ir = new Connector.Redmine.IssueLoader(new Connector.Redmine.RedmineConfigurator()
+            foreach (Control control in actionsGroupBox.Controls)
+                control.Enabled = true;
+        }
+
+        private bool isOneWord()
+        {
+            Regex r = new Regex("[A-Za-zА-Яа-я]+");
+            return r.IsMatch(contentTextBox.Text);
+        }
+
+        private bool isTwoWords()
+        {
+            Regex r = new Regex("[A-Za-zА-Яа-я]+ [A-Za-zА-Яа-я]+");
+            return r.IsMatch(contentTextBox.Text);
+        }
+
+        private string sourceFirstForm()
+        {
+            // get first form of source string
+            var morphLib = new TA.Morph.MorphLib(contentTextBox.Text);
+            return string.Join(" ", morphLib.ToMainForm());
+        }
+        #endregion
+
+        private void buttonFreq_Click(object sender, EventArgs e)
+        {
+            // check format
+            if (!isOneWord() && !isTwoWords())
             {
-                Link = "http://redmine.aisgorod.ru",
-                Key = "3a2901bd622185835374cb45e9c98a58644df40f"
-            });
-            ir.RunJournals();
+                MessageBox.Show("Неверный формат входной строки.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get first form of source string
+            string sourceString = sourceFirstForm();
+
+            // get frequency of words
+            var freqLib = new TA.Statistic.Frequency(_words);
+            int result = 0;
+            if (isOneWord()) result = freqLib.GetByOneWord(sourceString);
+            if (isTwoWords()) result = freqLib.GetByBigramm(sourceString);
+
+            // print result
+            resultTextBox.Text += string.Format("Поиск частоты [{0}]: {1} из {2}.\r\n", sourceString, result, _words.Count);
+        }
+
+        private void buttonMI_Click(object sender, EventArgs e)
+        {
+            // check format
+            if (!isTwoWords())
+            {
+                MessageBox.Show("Неверный формат входной строки.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get first form of source string
+            string sourceString = sourceFirstForm();
+
+            // get result
+            var muturalInf = new TA.Statistic.MutualInformation(_words);
+            var result = muturalInf.Calculate(sourceString);
+
+            // print result
+            resultTextBox.Text += string.Format("Метод Mutural-Information [{0}]: {1}.\r\n", sourceString, result);
         }
     }
 }

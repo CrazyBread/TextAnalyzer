@@ -96,6 +96,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedmineTaskSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RedmineTaskSelector.Designer.cs">
+      <DependentUpon>RedmineTaskSelector.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AnalysisClasterForm.resx">
+      <DependentUpon>AnalysisClasterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnalysisStatisticForm.resx">
       <DependentUpon>AnalysisStatisticForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +123,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RedmineTaskSelector.resx">
+      <DependentUpon>RedmineTaskSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
