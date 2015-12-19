@@ -192,6 +192,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="TimelineGetIntervalChange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="DaysStep" Type="int" Mode="In" />
+          <Parameter Name="StatusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TimelineGetMoment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="DaysStep" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="dbModelStoreContainer">
           <EntitySet Name="Facet" EntityType="Self.Facet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
@@ -291,6 +300,15 @@
             <End Role="Facet" EntitySet="Facets" />
             <End Role="Issue" EntitySet="Issues" />
           </AssociationSet>
+          <FunctionImport Name="TimelineGetIntervalChange" ReturnType="Collection(dbModel.TimelineGetIntervalChange_Result)">
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DaysStep" Mode="In" Type="Int32" />
+            <Parameter Name="StatusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TimelineGetMoment" ReturnType="Collection(dbModel.TimelineGetMoment_Result)">
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DaysStep" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Facet">
           <Key>
@@ -492,6 +510,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="TimelineGetIntervalChange_Result">
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="Int32" Name="CountIn" Nullable="true" />
+          <Property Type="Int32" Name="CountOut" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="TimelineGetMoment_Result">
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="false" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -571,6 +602,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TimelineGetIntervalChange" FunctionName="dbModel.Store.TimelineGetIntervalChange" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbModel.TimelineGetIntervalChange_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="CountIn" ColumnName="CountIn" />
+                <ScalarProperty Name="CountOut" ColumnName="CountOut" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimelineGetMoment" FunctionName="dbModel.Store.TimelineGetMoment" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbModel.TimelineGetMoment_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
