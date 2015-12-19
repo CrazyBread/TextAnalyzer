@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statisticAnalisysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.frequencyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mutualInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.morphologicalAnalisysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redmineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fillWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taskGroupBox = new System.Windows.Forms.GroupBox();
@@ -56,54 +51,12 @@
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem,
-            this.statisticAnalisysToolStripMenuItem,
-            this.morphologicalAnalisysToolStripMenuItem,
             this.redmineToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(624, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip";
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.loadToolStripMenuItem.Text = "Load";
-            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
-            // 
-            // statisticAnalisysToolStripMenuItem
-            // 
-            this.statisticAnalisysToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.frequencyToolStripMenuItem,
-            this.mutualInformationToolStripMenuItem});
-            this.statisticAnalisysToolStripMenuItem.Enabled = false;
-            this.statisticAnalisysToolStripMenuItem.Name = "statisticAnalisysToolStripMenuItem";
-            this.statisticAnalisysToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
-            this.statisticAnalisysToolStripMenuItem.Text = "Statistic analisys";
-            // 
-            // frequencyToolStripMenuItem
-            // 
-            this.frequencyToolStripMenuItem.Name = "frequencyToolStripMenuItem";
-            this.frequencyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.frequencyToolStripMenuItem.Text = "Frequency";
-            this.frequencyToolStripMenuItem.Click += new System.EventHandler(this.frequencyToolStripMenuItem_Click);
-            // 
-            // mutualInformationToolStripMenuItem
-            // 
-            this.mutualInformationToolStripMenuItem.Name = "mutualInformationToolStripMenuItem";
-            this.mutualInformationToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.mutualInformationToolStripMenuItem.Text = "Mutual Information";
-            this.mutualInformationToolStripMenuItem.Click += new System.EventHandler(this.mutualInformationToolStripMenuItem_Click);
-            // 
-            // morphologicalAnalisysToolStripMenuItem
-            // 
-            this.morphologicalAnalisysToolStripMenuItem.Enabled = false;
-            this.morphologicalAnalisysToolStripMenuItem.Name = "morphologicalAnalisysToolStripMenuItem";
-            this.morphologicalAnalisysToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
-            this.morphologicalAnalisysToolStripMenuItem.Text = "Morphological analisys";
-            this.morphologicalAnalisysToolStripMenuItem.Click += new System.EventHandler(this.morphologicalAnalisysToolStripMenuItem_Click);
             // 
             // redmineToolStripMenuItem
             // 
@@ -197,6 +150,7 @@
             this.buttonTfIdf.TabIndex = 4;
             this.buttonTfIdf.Text = "Метод TF*IDF (С)";
             this.buttonTfIdf.UseVisualStyleBackColor = true;
+            this.buttonTfIdf.Click += new System.EventHandler(this.buttonTfIdf_Click);
             // 
             // buttonLogLikehood
             // 
@@ -206,6 +160,7 @@
             this.buttonLogLikehood.TabIndex = 3;
             this.buttonLogLikehood.Text = "Метод Log-Likelihood (Д)";
             this.buttonLogLikehood.UseVisualStyleBackColor = true;
+            this.buttonLogLikehood.Click += new System.EventHandler(this.buttonLogLikehood_Click);
             // 
             // buttonTScore
             // 
@@ -215,6 +170,7 @@
             this.buttonTScore.TabIndex = 2;
             this.buttonTScore.Text = "Метод T-Score (Д)";
             this.buttonTScore.UseVisualStyleBackColor = true;
+            this.buttonTScore.Click += new System.EventHandler(this.buttonTScore_Click);
             // 
             // buttonMI
             // 
@@ -278,11 +234,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem statisticAnalisysToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem frequencyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mutualInformationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem morphologicalAnalisysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redmineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fillWordsToolStripMenuItem;
         private System.Windows.Forms.GroupBox taskGroupBox;

@@ -28,62 +28,6 @@ namespace TA.GUI
         }
 
         #region TODO: replace or delete
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var loader = new TA.Connector.File.FileLoader();
-                loader.Load(dialog.FileName).RemoveUselessChars().ToUpperCase();
-                _words = loader.Words;
-
-                statisticAnalisysToolStripMenuItem.Enabled = true;
-                morphologicalAnalisysToolStripMenuItem.Enabled = true;
-                loadToolStripMenuItem.Enabled = false;
-            }
-        }
-
-        private void frequencyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // на первый раз выведем в messagebox топ20 слов
-            var freq = new TA.Statistic.Frequency(_words);
-            var resultString = string.Join("\r\n", freq.Process().Take(20).Select(i => i.word + " — " + i.count));
-            MessageBox.Show(resultString);
-        }
-
-        private void mutualInformationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var mutInf = new TA.Statistic.MutualInformation(_words);
-            var result = mutInf.Calculate("ГИС ЖКХ");
-            MessageBox.Show(result.ToString());
-        }
-
-        private void buttonBigrammFind_Click(object sender, EventArgs e)
-        {
-            double resultCoef = 0.0;
-            string resultBigramm = string.Empty;
-            var mutInf = new TA.Statistic.MutualInformation(_words);
-
-            for (int i = 0; i < _words.Count - 1; i++)
-            {
-                var currentBigramm = _words[i] + " " + _words[i + 1];
-                var currentCoef = mutInf.Calculate(currentBigramm);
-
-                if (currentCoef > resultCoef)
-                {
-                    resultCoef = currentCoef;
-                    resultBigramm = currentBigramm;
-                }
-            }
-
-            MessageBox.Show(resultBigramm + ": " + resultCoef.ToString());
-        }
-
-        private void morphologicalAnalisysToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //
-        }
-
         private void fillWordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var issues = TA.Connector.Redmine.Connector.GetAllIssues();
@@ -148,38 +92,6 @@ namespace TA.GUI
             resultTextBox.Text += "\r\n";
         }
 
-        #region other stuff
-        private void buttonsDisable()
-        {
-            foreach (Control control in actionsGroupBox.Controls)
-                control.Enabled = false;
-        }
-
-        private void buttonsEnable()
-        {
-            foreach (Control control in actionsGroupBox.Controls)
-                control.Enabled = true;
-        }
-
-        private bool isOneWord()
-        {
-            Regex r = new Regex("[A-Za-zА-Яа-я]+");
-            return r.IsMatch(contentTextBox.Text);
-        }
-
-        private bool isTwoWords()
-        {
-            Regex r = new Regex("[A-Za-zА-Яа-я]+ [A-Za-zА-Яа-я]+");
-            return r.IsMatch(contentTextBox.Text);
-        }
-
-        private string sourceFirstForm()
-        {
-            // get first form of source string
-            var morphLib = new TA.Morph.MorphLib(contentTextBox.Text);
-            return string.Join(" ", morphLib.ToMainForm());
-        }
-        #endregion
 
         private void buttonFreq_Click(object sender, EventArgs e)
         {
@@ -222,5 +134,107 @@ namespace TA.GUI
             // print result
             resultTextBox.Text += string.Format("Метод Mutural-Information [{0}]: {1}.\r\n", sourceString, result);
         }
+
+        private void buttonTScore_Click(object sender, EventArgs e)
+        {
+            // check format
+            if (!isTwoWords())
+            {
+                MessageBox.Show("Неверный формат входной строки.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get first form of source string
+            string sourceString = sourceFirstForm();
+
+            // get result
+            var tScore = new TA.Statistic.TScore(_words);
+            var result = tScore.Calculate(sourceString);
+
+            // print result
+            resultTextBox.Text += string.Format("Метод T-Score [{0}]: {1}.\r\n", sourceString, result);
+        }
+
+        private void buttonLogLikehood_Click(object sender, EventArgs e)
+        {
+            // check format
+            if (!isTwoWords())
+            {
+                MessageBox.Show("Неверный формат входной строки.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get first form of source string
+            string sourceString = sourceFirstForm();
+
+            // get result
+            var logLikeihood = new TA.Statistic.LogLikelihood(_words);
+            var result = logLikeihood.Calculate(sourceString);
+
+            // print result
+            resultTextBox.Text += string.Format("Метод Log-Likelihood [{0}]: {1}.\r\n", sourceString, result);
+        }
+
+        private void buttonTfIdf_Click(object sender, EventArgs e)
+        {
+            // check format
+            if (!isOneWord())
+            {
+                MessageBox.Show("Неверный формат входной строки.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get first form of source string
+            string sourceString = sourceFirstForm();
+
+            // get other data
+            int collectionLength = 0;
+            int usedCount = 0;
+            using (var db = new Connector.Redmine.Model.dbEntities())
+            {
+                collectionLength = db.Words.Where(i => i.WordsInText == 1).Sum(i => i.Count);
+                usedCount = db.Words.Where(i => i.Text == sourceString).Sum(i => i.Count);
+            }
+
+            // get result
+            var tfIdf = new TA.Statistic.TfIdf(_words);
+            var result = tfIdf.Calculate(sourceString, collectionLength, usedCount);
+
+            // print result
+            resultTextBox.Text += string.Format("Метод TF*IDF [{0}]: {1}.\r\n", sourceString, result);
+        }
+
+        #region other stuff
+        private void buttonsDisable()
+        {
+            foreach (Control control in actionsGroupBox.Controls)
+                control.Enabled = false;
+        }
+
+        private void buttonsEnable()
+        {
+            foreach (Control control in actionsGroupBox.Controls)
+                control.Enabled = true;
+        }
+
+        private bool isOneWord()
+        {
+            Regex r = new Regex("[A-Za-zА-Яа-я]+");
+            return r.IsMatch(contentTextBox.Text);
+        }
+
+        private bool isTwoWords()
+        {
+            Regex r = new Regex("[A-Za-zА-Яа-я]+ [A-Za-zА-Яа-я]+");
+            return r.IsMatch(contentTextBox.Text);
+        }
+
+        private string sourceFirstForm()
+        {
+            // get first form of source string
+            var morphLib = new TA.Morph.MorphLib(contentTextBox.Text);
+            return string.Join(" ", morphLib.ToMainForm());
+        }
+        #endregion
     }
 }
