@@ -63,7 +63,7 @@ namespace TA.Morph
         /// </summary>
         /// <param name="partOfSpeech">Разрешённые части речи из mystem</param>
         /// <returns></returns>
-        public List<string> Filter(params string[] partOfSpeech)
+        public List<string> ToMainForm(params string[] partOfSpeech)
         {
             return _GetWordsInfo().Where(i => partOfSpeech.Contains(i.PartOfSpeech)).Select(i => i.Text).ToList();
         }

@@ -12,9 +12,14 @@ namespace TA.GUI
 {
     public partial class AnalysisMorphForm : Form
     {
-        public AnalysisMorphForm()
+        private List<string> _words;
+        private Connector.Redmine.Model.Issue _task;
+
+        public AnalysisMorphForm(List<string> words, Connector.Redmine.Model.Issue task)
         {
             InitializeComponent();
+            _words = words;
+            _task = task;
         }
     }
 }

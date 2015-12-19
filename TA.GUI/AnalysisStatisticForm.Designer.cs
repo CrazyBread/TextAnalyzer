@@ -31,9 +31,6 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.redmineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fillWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.taskGroupBox = new System.Windows.Forms.GroupBox();
-            this.taskTextBox = new System.Windows.Forms.TextBox();
-            this.taskButton = new System.Windows.Forms.Button();
             this.contentLabel = new System.Windows.Forms.Label();
             this.contentTextBox = new System.Windows.Forms.TextBox();
             this.actionsGroupBox = new System.Windows.Forms.GroupBox();
@@ -44,7 +41,6 @@
             this.buttonFreq = new System.Windows.Forms.Button();
             this.resultTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
-            this.taskGroupBox.SuspendLayout();
             this.actionsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,45 +69,10 @@
             this.fillWordsToolStripMenuItem.Text = "Fill words";
             this.fillWordsToolStripMenuItem.Click += new System.EventHandler(this.fillWordsToolStripMenuItem_Click);
             // 
-            // taskGroupBox
-            // 
-            this.taskGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.taskGroupBox.Controls.Add(this.taskTextBox);
-            this.taskGroupBox.Controls.Add(this.taskButton);
-            this.taskGroupBox.Location = new System.Drawing.Point(12, 27);
-            this.taskGroupBox.Name = "taskGroupBox";
-            this.taskGroupBox.Size = new System.Drawing.Size(600, 50);
-            this.taskGroupBox.TabIndex = 0;
-            this.taskGroupBox.TabStop = false;
-            this.taskGroupBox.Text = "Задача из Redmine";
-            // 
-            // taskTextBox
-            // 
-            this.taskTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.taskTextBox.Location = new System.Drawing.Point(7, 18);
-            this.taskTextBox.Name = "taskTextBox";
-            this.taskTextBox.ReadOnly = true;
-            this.taskTextBox.Size = new System.Drawing.Size(465, 20);
-            this.taskTextBox.TabIndex = 2;
-            this.taskTextBox.Text = "Задача не выбрана";
-            // 
-            // taskButton
-            // 
-            this.taskButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.taskButton.Location = new System.Drawing.Point(478, 16);
-            this.taskButton.Name = "taskButton";
-            this.taskButton.Size = new System.Drawing.Size(116, 23);
-            this.taskButton.TabIndex = 1;
-            this.taskButton.Text = "Выбрать";
-            this.taskButton.UseVisualStyleBackColor = true;
-            this.taskButton.Click += new System.EventHandler(this.taskButton_Click);
-            // 
             // contentLabel
             // 
             this.contentLabel.AutoSize = true;
-            this.contentLabel.Location = new System.Drawing.Point(12, 80);
+            this.contentLabel.Location = new System.Drawing.Point(12, 24);
             this.contentLabel.Name = "contentLabel";
             this.contentLabel.Size = new System.Drawing.Size(268, 13);
             this.contentLabel.TabIndex = 2;
@@ -121,7 +82,7 @@
             // 
             this.contentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.contentTextBox.Location = new System.Drawing.Point(12, 97);
+            this.contentTextBox.Location = new System.Drawing.Point(12, 41);
             this.contentTextBox.Name = "contentTextBox";
             this.contentTextBox.Size = new System.Drawing.Size(594, 20);
             this.contentTextBox.TabIndex = 3;
@@ -135,9 +96,9 @@
             this.actionsGroupBox.Controls.Add(this.buttonTScore);
             this.actionsGroupBox.Controls.Add(this.buttonMI);
             this.actionsGroupBox.Controls.Add(this.buttonFreq);
-            this.actionsGroupBox.Location = new System.Drawing.Point(12, 124);
+            this.actionsGroupBox.Location = new System.Drawing.Point(12, 67);
             this.actionsGroupBox.Name = "actionsGroupBox";
-            this.actionsGroupBox.Size = new System.Drawing.Size(200, 285);
+            this.actionsGroupBox.Size = new System.Drawing.Size(200, 342);
             this.actionsGroupBox.TabIndex = 4;
             this.actionsGroupBox.TabStop = false;
             this.actionsGroupBox.Text = "Действия";
@@ -198,12 +159,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resultTextBox.BackColor = System.Drawing.Color.White;
-            this.resultTextBox.Location = new System.Drawing.Point(219, 124);
+            this.resultTextBox.Location = new System.Drawing.Point(219, 67);
             this.resultTextBox.Multiline = true;
             this.resultTextBox.Name = "resultTextBox";
             this.resultTextBox.ReadOnly = true;
             this.resultTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.resultTextBox.Size = new System.Drawing.Size(393, 274);
+            this.resultTextBox.Size = new System.Drawing.Size(393, 331);
             this.resultTextBox.TabIndex = 5;
             // 
             // AnalysisStatisticForm
@@ -215,7 +176,6 @@
             this.Controls.Add(this.actionsGroupBox);
             this.Controls.Add(this.contentTextBox);
             this.Controls.Add(this.contentLabel);
-            this.Controls.Add(this.taskGroupBox);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(640, 460);
@@ -223,8 +183,6 @@
             this.Text = "Статистический анализ";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.taskGroupBox.ResumeLayout(false);
-            this.taskGroupBox.PerformLayout();
             this.actionsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -236,9 +194,6 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem redmineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fillWordsToolStripMenuItem;
-        private System.Windows.Forms.GroupBox taskGroupBox;
-        private System.Windows.Forms.TextBox taskTextBox;
-        private System.Windows.Forms.Button taskButton;
         private System.Windows.Forms.Label contentLabel;
         private System.Windows.Forms.TextBox contentTextBox;
         private System.Windows.Forms.GroupBox actionsGroupBox;

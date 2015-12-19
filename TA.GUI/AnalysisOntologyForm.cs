@@ -14,9 +14,14 @@ namespace TA.GUI
 {
     public partial class AnalysisOntologyForm : Form
     {
-        public AnalysisOntologyForm()
+        private List<string> _words;
+        private Connector.Redmine.Model.Issue _task;
+
+        public AnalysisOntologyForm(List<string> words, Connector.Redmine.Model.Issue task)
         {
             InitializeComponent();
+            _words = words;
+            _task = task;
         }
 
         private void selectOntologyFile_Button_Click(object sender, EventArgs e)
