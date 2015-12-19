@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TA.GUI
 {
-    public partial class AnalysisOnthForm : Form
+    public partial class AnalysisOntologyForm : Form
     {
-        public AnalysisOnthForm()
+        public AnalysisOntologyForm()
         {
             InitializeComponent();
         }

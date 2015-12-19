@@ -92,7 +92,6 @@ namespace TA.GUI
             resultTextBox.Text += "\r\n";
         }
 
-
         private void buttonFreq_Click(object sender, EventArgs e)
         {
             // check format

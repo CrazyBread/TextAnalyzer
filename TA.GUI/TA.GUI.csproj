@@ -70,11 +70,11 @@
     <Compile Include="AnalysisMorphForm.Designer.cs">
       <DependentUpon>AnalysisMorphForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnalysisOnthForm.cs">
+    <Compile Include="AnalysisOntologyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnalysisOnthForm.Designer.cs">
-      <DependentUpon>AnalysisOnthForm.cs</DependentUpon>
+    <Compile Include="AnalysisOntologyForm.Designer.cs">
+      <DependentUpon>AnalysisOntologyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AnalysisStatisticForm.cs">
       <SubType>Form</SubType>
@@ -104,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="AnalysisClasterForm.resx">
       <DependentUpon>AnalysisClasterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnalysisMorphForm.resx">
+      <DependentUpon>AnalysisMorphForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnalysisStatisticForm.resx">
       <DependentUpon>AnalysisStatisticForm.cs</DependentUpon>
@@ -143,6 +146,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TA.Ontology\TA.Ontology.csproj">
+      <Project>{8afd4a10-9fcd-4edb-a440-57ee75d9e1ee}</Project>
+      <Name>TA.Ontology</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TA.Statistic\TA.Statistic.csproj">
       <Project>{60d374ba-eb1b-429a-a863-35d438f1ad80}</Project>
       <Name>TA.Statistic</Name>

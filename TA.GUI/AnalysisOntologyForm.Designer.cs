@@ -1,6 +1,6 @@
 ﻿namespace TA.GUI
 {
-    partial class AnalysisOnthForm
+    partial class AnalysisOntologyForm
     {
         /// <summary>
         /// Required designer variable.

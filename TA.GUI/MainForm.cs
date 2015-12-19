@@ -47,7 +47,7 @@ namespace TA.GUI
 
         private void buttonAOnth_Click(object sender, EventArgs e)
         {
-            new AnalysisOnthForm().ShowDialog();
+            new AnalysisOntologyForm().ShowDialog();
         }
 
         private void buttonATimeline_Click(object sender, EventArgs e)
