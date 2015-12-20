@@ -12,6 +12,8 @@ namespace TA.Connector.Redmine.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class dbEntities : DbContext
     {
@@ -31,5 +33,35 @@ namespace TA.Connector.Redmine.Model
         public virtual DbSet<Journal> Journals { get; set; }
         public virtual DbSet<JournalDetail> JournalDetails { get; set; }
         public virtual DbSet<JournalFacet> JournalFacets { get; set; }
+    
+        public virtual ObjectResult<TimelineGetIntervalChange_Result> TimelineGetIntervalChange(Nullable<System.DateTime> startDate, Nullable<int> daysStep, Nullable<int> statusId)
+        {
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var daysStepParameter = daysStep.HasValue ?
+                new ObjectParameter("DaysStep", daysStep) :
+                new ObjectParameter("DaysStep", typeof(int));
+    
+            var statusIdParameter = statusId.HasValue ?
+                new ObjectParameter("StatusId", statusId) :
+                new ObjectParameter("StatusId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TimelineGetIntervalChange_Result>("TimelineGetIntervalChange", startDateParameter, daysStepParameter, statusIdParameter);
+        }
+    
+        public virtual ObjectResult<TimelineGetMoment_Result> TimelineGetMoment(Nullable<System.DateTime> startDate, Nullable<int> daysStep)
+        {
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var daysStepParameter = daysStep.HasValue ?
+                new ObjectParameter("DaysStep", daysStep) :
+                new ObjectParameter("DaysStep", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TimelineGetMoment_Result>("TimelineGetMoment", startDateParameter, daysStepParameter);
+        }
     }
 }

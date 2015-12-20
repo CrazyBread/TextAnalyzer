@@ -94,6 +94,12 @@
     <Compile Include="Model\JournalFacet.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TimelineGetIntervalChange_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TimelineGetMoment_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Word.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
