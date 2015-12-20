@@ -31,7 +31,7 @@ namespace TA.Ontology
             _ParseOntoClassList(xmlDoc);
             _ParseOntoIndividualLemm(xmlDoc);
             _ParsSubClassOf(xmlDoc);
-           // _ModifyLemmState();
+            _ModifyLemmState();
         }
 
         private string GetLemmByClass(string Name)

@@ -21,6 +21,19 @@ namespace TA.GUI
         public AnalysisOntologyForm(List<string> words, Connector.Redmine.Model.Issue task)
         {
             InitializeComponent();
+
+            Logger.TextChanged += (sender, e) =>
+            {
+                ontologyResult_richTextBox.Text = e;
+            };
+            ontologyResult_richTextBox.TextChanged += (sender, e) =>
+            {
+                ontologyResult_richTextBox.SelectionStart = ontologyResult_richTextBox.TextLength;
+                ontologyResult_richTextBox.ScrollToCaret();
+            };
+
+            Logger.LogHtml("<h1>Онтологический анализ</h1>");
+            Logger.LogText("Онтологический анализ");
             _words = words;
             _task = task;
         }
@@ -38,8 +51,8 @@ namespace TA.GUI
                     _ontologiLib = new OntologyLib(od.FileName);
                     selectOntologyFile_Button.Enabled = false;
                     _ontologiLib.ParseXmlData();
-
-                    ontologyResult_richTextBox.Text += "\n\nФайл с онтологией успено разобран.\n\n";
+                    
+                    Logger.LogText("\nФайл с онтологией успено разобран.\n\n");
                     ontologyResult_richTextBox.SelectionStart = ontologyResult_richTextBox.Text.Length;
                     ontologyResult_richTextBox.ScrollToCaret();
 
@@ -54,7 +67,8 @@ namespace TA.GUI
 
         private void AnalysisOntologyForm_Load(object sender, EventArgs e)
         {
-            ontologyResult_richTextBox.Text += string.Format("\n\nИсходный тест задачи:\n{0}\n\n", _task.Description);
+            Logger.LogText(string.Format("\n\nИсходный тест задачи:\n{0}\n\n", _task.Description));
+
             foreach (var item in _words.Distinct())
             {
                 words_listBox.Items.Add(item);
@@ -66,31 +80,38 @@ namespace TA.GUI
             string selectedWord = words_listBox.SelectedItem.ToString();
             
             FindOntoResult findResult = _ontologiLib.FindWord(selectedWord);
-            string resultText = string.Empty;
 
-            resultText += string.Format("\nСлово \"{0}\"{1} является термином.\n", selectedWord, findResult.isTerm ? string.Empty : " не");
+            Logger.LogHtml(string.Format("<h3>Слово \"{0}\"{1} является термином.</h3>", selectedWord, findResult.isTerm ? string.Empty : " не"));
+            Logger.LogText(string.Format("\nСлово \"{0}\"{1} является термином.\n", selectedWord, findResult.isTerm ? string.Empty : " не"));
+            
             if (findResult.findedList.Any())
             {
-                resultText += string.Format("\nВ онтологии были\b точно\b найдены объекты:\n");
-                foreach(var item in findResult.findedList)
+                Logger.LogHtml(string.Format("<p>В онтологии были точно найдены объекты:</p>"));
+                Logger.LogText(string.Format("\nВ онтологии были\b точно\b найдены объекты:\n"));
+
+                Logger.LogHtml("<ul>");
+                foreach (var item in findResult.findedList)
                 {
-                    resultText += string.Format("\n\t Название: {0}\n\t Лемма: {1}\n", item.Name, item.Lemm);
+                    Logger.LogHtml(string.Format("<li>Название: {0} Лемма: {1}</li>", item.Name, item.Lemm));
+                    Logger.LogText(string.Format("\n\t Название: {0}\n\t Лемма: {1}\n", item.Name, item.Lemm));
                 }
-                resultText += "\n";
+                Logger.LogHtml("</ul>");
+                ontologyResult_richTextBox.Text += "\n";
             }
             if (findResult.findedFazyList.Any())
             {
-                resultText += string.Format("\nВозможно слово \"{0}\" относится к объектам:\n", selectedWord);
+                Logger.LogHtml(string.Format("<p>Возможно слово \"{0}\" относится к объектам:</p>", selectedWord));
+                Logger.LogText(string.Format("\nВозможно слово \"{0}\" относится к объектам:\n", selectedWord));
+
+                Logger.LogHtml("<ul>");
                 foreach (var item in findResult.findedFazyList)
                 {
-                    resultText += string.Format("\n\t Название: {0}\n\t Лемма: {1}\n\t Вероятность совпадения: {2:0.000}\n", item.Name, item.Lemm, findResult.probabilityIsTermDicrionary[item]);
+                    Logger.LogHtml(string.Format("<li>Название: {0}\n\t Лемма: {1}\n\t Вероятность совпадения: {2:0.000}</li>", item.Name, item.Lemm, findResult.probabilityIsTermDicrionary[item]));
+                    Logger.LogText(string.Format("\n\t Название: {0}\n\t Лемма: {1}\n\t Вероятность совпадения: {2:0.000}\n", item.Name, item.Lemm, findResult.probabilityIsTermDicrionary[item]));
                 }
-                resultText += "\n";
+                Logger.LogHtml("</ul>");
+                ontologyResult_richTextBox.Text  += "\n";
             }
-            ontologyResult_richTextBox.Text += resultText;
-
-            ontologyResult_richTextBox.SelectionStart = ontologyResult_richTextBox.Text.Length;
-            ontologyResult_richTextBox.ScrollToCaret();
         }
     }
 }
