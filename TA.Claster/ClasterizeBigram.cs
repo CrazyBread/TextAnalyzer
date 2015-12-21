@@ -50,22 +50,32 @@ namespace TA.Claster
 
         public void PrintResult(string fileName)
         {
-            var top10Terms = _accessories.Where(i => i.Claster == _termClaster).OrderByDescending(i => i.Accessory).Take(50);
-            var top10NotTerms = _accessories.Where(i => i.Claster == _notTermClaster).OrderByDescending(i => i.Accessory).Take(50);
+            var top50Terms = _accessories.Where(i => i.Claster == _termClaster).OrderByDescending(i => i.Accessory).Take(50);
+            var top50NotTerms = _accessories.Where(i => i.Claster == _notTermClaster).OrderByDescending(i => i.Accessory).Take(50);
 
             Trace.Listeners.Add(new TextWriterTraceListener(fileName));
             Trace.WriteLine("ТОП 50 терминов:");
-            foreach(var item in top10Terms)
+            foreach(var item in top50Terms)
             {
                 Trace.WriteLine(item.Item.Item);
             }
             Trace.WriteLine("");
             Trace.WriteLine("ТОП 50 не терминов:");
-            foreach (var item in top10NotTerms)
+            foreach (var item in top50NotTerms)
             {
                 Trace.WriteLine(item.Item.Item);
             }
             Trace.Flush();
+        }
+
+        public List<string> GetTerms(int count)
+        {
+            return _accessories.Where(i => i.Claster == _termClaster).OrderByDescending(i => i.Accessory).Take(count).Select(d => d.Item.Item as string).ToList();
+        }
+
+        public List<string> GetNotTerms(int count)
+        {
+            return _accessories.Where(i => i.Claster == _notTermClaster).OrderByDescending(i => i.Accessory).Take(count).Select(d => d.Item.Item as string).ToList();
         }
 
         private void _Init()
