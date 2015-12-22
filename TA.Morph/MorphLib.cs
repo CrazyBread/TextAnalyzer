@@ -25,7 +25,7 @@ namespace TA.Morph
             _sourceString = sourceString;
         }
 
-        private List<Word> _GetWordsInfo()
+        public List<Word> GetWordsInfo()
         {
             // null check
             if (string.IsNullOrEmpty(_sourceString) && (_words == null || _words.Count == 0))
@@ -55,7 +55,7 @@ namespace TA.Morph
         /// <returns></returns>
         public List<string> ToMainForm()
         {
-            return _GetWordsInfo().Select(i => i.Text).ToList();
+            return GetWordsInfo().Select(i => i.Text).ToList();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace TA.Morph
         /// <returns></returns>
         public List<string> ToMainForm(params string[] partOfSpeech)
         {
-            return _GetWordsInfo().Where(i => partOfSpeech.Contains(i.PartOfSpeech)).Select(i => i.Text).ToList();
+            return GetWordsInfo().Where(i => partOfSpeech.Contains(i.PartOfSpeech)).Select(i => i.Text).ToList();
         }
     }
 }
