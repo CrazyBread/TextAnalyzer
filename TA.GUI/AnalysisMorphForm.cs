@@ -21,5 +21,20 @@ namespace TA.GUI
             _words = words;
             _task = task;
         }
+
+        private void runButton_Click(object sender, EventArgs e)
+        {
+            resultTextBox.Clear();
+
+            var morphLib = new Morph.MorphLib(wordTextBox.Text);
+            var words = morphLib.GetWordsInfo();
+            foreach(var word in words)
+            {
+                resultTextBox.Text += "!!! " + word.Text + " !!!\r\n";
+                resultTextBox.Text += "Часть речи: " + word.PartOfSpeech + "\r\n";
+                resultTextBox.Text += "Дополнительная информация: " + word.PartOfSpeechAddition + "\r\n";
+                resultTextBox.Text += "\r\n";
+            }
+        }
     }
 }

@@ -10,18 +10,19 @@ namespace TA.GUI
     {
         private static string _text = string.Empty;
         private static string _html = string.Empty;
+        public static string Html { get { return _html; } }
 
         public static void LogText(string text)
         {
             _text += text + "\r\n";
-            if(TextChanged != null)
+            if (TextChanged != null)
                 TextChanged(null, _text);
         }
 
         public static void LogHtml(string text)
         {
             _html += text;
-            if(HtmlChanged != null)
+            if (HtmlChanged != null)
                 HtmlChanged(null, _html);
         }
 
